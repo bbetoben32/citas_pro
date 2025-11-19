@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recordatorio de Cita</title>
+ 
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header header-primary">
+            <h1>Recordatorio de Cita</h1>
+        </div>
+        <div class="email-content">
+            <p class="greeting">Hola <strong>{{ cliente_nombre }}</strong>,</p>
+            
+            <div class="badge badge-info">No olvides tu cita programada</div>
+            
+            <p class="intro-text">
+                Te recordamos que tienes una cita programada con <strong>{{ profesional_nombre }}</strong>.
+            </p>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Profesional: </span>
+                    <span class="info-value">{{ profesional_nombre }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Fecha: </span>
+                    <span class="info-value">{{ fecha_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hora: </span>
+                    <span class="info-value">{{ hora_inicio_formateada }} - {{ hora_fin_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Modalidad: </span>
+                    <span class="info-value">{{ modalidad_texto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Lugar: </span>
+                    <span class="info-value">{{ lugar if lugar else 'Por confirmar' }}</span>
+                </div>
+            </div>
+            
+            <div class="important-box">
+                <p class="important-title">Información Importante</p>
+                <ul class="important-list">
+                    <li>Llega con 10 minutos de anticipación</li>
+                    <li>Teléfono de contacto: {{ profesional_telefono }}</li>
+                    <li>Motivo de la cita: {{ motivo }}</li>
+                    <li>Si tienes algun inconveniente podras abrir un ticket en el apartado perfil</li>
+                </ul>
+            </div>
+            
+            <p class="closing-text">Esperamos verte pronto.</p>
+        </div>
+        <div class="email-footer">
+            <p class="footer-text">© 2025 PsicoPlus. Todos los derechos reservados.</p>
+            <p class="footer-text">Este es un correo automático, por favor no responder.</p>
+        </div>
+    </div>
+</body>
+</html>

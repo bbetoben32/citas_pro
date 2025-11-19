@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solicitud de Cita Enviada</title>
+    
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header header-primary">
+            <h1>Solicitud de Cita Enviada</h1>
+        </div>
+        <div class="email-content">
+            <p class="greeting">Hola <strong>{{ cliente_nombre }}</strong>,</p>
+            
+            <div class="badge badge-success">Solicitud enviada exitosamente</div>
+            
+            <p class="intro-text">Has solicitado una cita con <strong>{{ profesional_nombre }}</strong>.</p>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Profesional: </span>
+                    <span class="info-value">{{ profesional_nombre }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Fecha: </span>
+                    <span class="info-value">{{ fecha_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hora: </span>
+                    <span class="info-value">{{ hora_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Monto: </span>
+                    <span class="info-value">{{ monto_total }}</span>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <p class="warning-title">Estado: Pendiente de Confirmación</p>
+                <p class="warning-text">
+                    El profesional revisará tu solicitud y te enviará un correo de confirmación con las instrucciones de pago.
+                </p>
+            </div>
+            
+            <div class="steps-box">
+                <p class="steps-title">Próximos Pasos</p>
+                <ol class="steps-list">
+                    <li>Espera la confirmación del profesional</li>
+                    <li>Recibirás un correo con las indicaciones de pago</li>
+                    <li>Realiza el pago según las instrucciones</li>
+                    <li>¡Asiste a tu cita!</li>
+                </ol>
+            </div>
+        </div>
+        <div class="email-footer">
+            <p class="footer-text">© 2025 PsicoPlus. Todos los derechos reservados.</p>
+            <p class="footer-text">Este es un correo automático, por favor no responder.</p>
+        </div>
+    </div>
+</body>
+</html>

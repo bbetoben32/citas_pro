@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cita Confirmada</title>
+    
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header header-success">
+            <h1>Cita Confirmada</h1>
+        </div>
+        <div class="email-content">
+            <p class="greeting">Hola <strong>{{ cliente_nombre }}</strong>,</p>
+            
+            <div class="badge badge-success">Cita aceptada y confirmada</div>
+            
+            <p class="intro-text">
+                <strong>{{ profesional_nombre }}</strong> ha aceptado tu solicitud de cita.
+            </p>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Profesional: </span>
+                    <span class="info-value">{{ profesional_nombre }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Fecha: </span>
+                    <span class="info-value">{{ fecha_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hora: </span>
+                    <span class="info-value">{{ hora_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Modalidad: </span>
+                    <span class="info-value">{{ modalidad_texto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Lugar: </span>
+                    <span class="info-value">{{ lugar }}</span>
+                </div>
+            </div>
+            
+            <div class="payment-box">
+                <p class="payment-title">Información de Pago</p>
+                <p class="payment-text">Para confirmar definitivamente tu cita, por favor realiza el pago correspondiente:</p>
+                <div class="payment-amount">{{ monto_total }}</div>
+            </div>
+            
+            <div class="note-box">
+                <p class="note-title">Recordatorio</p>
+                <ul class="note-list">
+                    <li>El pago debe realizarse hasta 30 minutos antes de la fecha de la cita</li>
+                    <li>Para seguir con el pago ingresa a la pagina PsicoPlus, ve al apartado</li>
+                    <li>Pagos pendientes, y ahí podras realizar tu pago</li>
+                    <li>Una vez realizado el pago, tu cita quedará completamente confirmada</li>
+                    <li>Si tienes alguna duda, contáctanos</li>
+                </ul>
+            </div>
+        </div>
+        <div class="email-footer">
+            <p class="footer-text">© 2025 PsicoPlus. Todos los derechos reservados.</p>
+            <p class="footer-text">Este es un correo automático, por favor no responder.</p>
+        </div>
+    </div>
+</body>
+</html>

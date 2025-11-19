@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nueva Solicitud de Cita</title>
+   
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header header-primary">
+            <h1>Nueva Solicitud de Cita</h1>
+        </div>
+        <div class="email-content">
+            <p class="greeting">Hola <strong>{{ profesional_nombre }}</strong>,</p>
+            <p class="intro-text">El cliente <strong>{{ cliente_nombre }}</strong> ha solicitado una cita contigo.</p>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Fecha: </span>
+                    <span class="info-value">{{ fecha_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hora: </span>
+                    <span class="info-value">{{ hora_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Cliente: </span>
+                    <span class="info-value">{{ cliente_nombre }}</span>
+                </div>
+            </div>
+            
+            <div class="note-box">
+                <p class="note-title">Motivo de la Consulta </p>
+                <p class="note-content">{{ motivo }}</p>
+            </div>
+            
+            <p class="reminder-text">Es importante responder pronto para brindar un mejor servicio a tus clientes.</p>
+        </div>
+        <div class="email-footer">
+            <p class="footer-text">© 2025 PsicoPlus. Todos los derechos reservados.</p>
+            <p class="footer-text">Este es un correo automático, por favor no responder.</p>
+        </div>
+    </div>
+</body>
+</html>

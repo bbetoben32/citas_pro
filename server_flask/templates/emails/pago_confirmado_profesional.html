@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pago Recibido</title>
+    
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header header-success">
+            <h1>Pago Recibido</h1>
+        </div>
+        <div class="email-content">
+            <div class="badge badge-success">Cita pagada por el cliente</div>
+            
+            <p class="greeting" style="margin-top: 16px;">Hola <strong>{{ profesional_nombre }}</strong>,</p>
+            <p class="intro-text">El cliente <strong>{{ cliente_nombre }}</strong> ha completado el pago de su cita.</p>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Cliente: </span>
+                    <span class="info-value">{{ cliente_nombre }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Fecha: </span>
+                    <span class="info-value">{{ fecha_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hora: </span>
+                    <span class="info-value">{{ hora_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Monto: </span>
+                    <span class="info-value">{{ monto_total }}</span>
+                </div>
+            </div>
+            
+            <p class="note-text">Puedes consultar los detalles desde tu panel de profesional.</p>
+        </div>
+        <div class="email-footer">
+            <p class="footer-text">© 2025 PsicoPlus. Todos los derechos reservados.</p>
+            <p class="footer-text">Este es un correo automático, por favor no responder.</p>
+        </div>
+    </div>
+</body>
+</html>

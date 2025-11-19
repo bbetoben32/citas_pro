@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cita Cancelada</title>
+    
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header header-error">
+            <h1>Cita Cancelada</h1>
+        </div>
+        <div class="email-content">
+            <p class="greeting">Hola <strong>{{ cliente_nombre }}</strong>,</p>
+            
+            <div class="error-box">
+                <p class="error-title">Tu cita ha sido cancelada automáticamente</p>
+                <p class="error-text">
+                    Lamentablemente, tu cita con <strong>{{ profesional_nombre }}</strong> ha sido cancelada 
+                    debido a que no se recibió el pago dentro del plazo establecido.
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Profesional: </span>
+                    <span class="info-value">{{ profesional_nombre }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Fecha: </span>
+                    <span class="info-value">{{ fecha_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hora: </span>
+                    <span class="info-value">{{ hora_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Monto: </span>
+                    <span class="info-value">{{ monto_total }}</span>
+                </div>
+            </div>
+            
+            <div class="alternatives-box">
+                <p class="alternatives-title">¿Qué puedes hacer ahora?</p>
+                <ul class="alternatives-list">
+                    <li>Agenda una nueva cita con el mismo profesional</li>
+                    <li>Busca otros profesionales disponibles</li>
+                    <li>Recuerda realizar el pago a tiempo en tu próxima cita</li>
+                </ul>
+            </div>
+            
+            <p class="note-text">Si tienes alguna duda o necesitas asistencia, no dudes en contactarnos.</p>
+        </div>
+        <div class="email-footer">
+            <p class="footer-text">© 2025 PsicoPlus. Todos los derechos reservados.</p>
+            <p class="footer-text">Este es un correo automático, por favor no responder.</p>
+        </div>
+    </div>
+</body>
+</html>

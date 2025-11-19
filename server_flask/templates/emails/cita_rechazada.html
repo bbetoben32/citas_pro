@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solicitud No Aceptada</title>
+    
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header header-error">
+            <h1>Solicitud No Aceptada</h1>
+        </div>
+        <div class="email-content">
+            <p class="greeting">Hola <strong>{{ cliente_nombre }}</strong>,</p>
+            
+            <p class="intro-text">
+                Lamentablemente, <strong>{{ profesional_nombre }}</strong> no ha podido aceptar tu solicitud de cita.
+            </p>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Profesional: </span>
+                    <span class="info-value">{{ profesional_nombre }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Fecha solicitada: </span>
+                    <span class="info-value">{{ fecha_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hora solicitada: </span>
+                    <span class="info-value">{{ hora_formateada }}</span>
+                </div>
+            </div>
+            
+            <div class="error-box">
+                <p class="error-title">Motivo del rechazo </p>
+                <div class="error-content">{{ motivo_rechazo }}</div>
+            </div>
+            
+            <div class="alternatives-box">
+                <p class="alternatives-title">¿Qué puedes hacer?</p>
+                <ul class="alternatives-list">
+                    <li>Solicita una cita en otra fecha u horario con el mismo profesional</li>
+                    <li>Explora otros profesionales disponibles en nuestra plataforma</li>
+                    <li>Contacta directamente con el profesional para más información</li>
+                </ul>
+            </div>
+            
+            <p class="closing-text">Estamos aquí para ayudarte. No te desanimes, encontrarás el profesional ideal.</p>
+        </div>
+        <div class="email-footer">
+            <p class="footer-text">© 2025 PsicoPlus. Todos los derechos reservados.</p>
+            <p class="footer-text">Este es un correo automático, por favor no responder.</p>
+        </div>
+    </div>
+</body>
+</html>

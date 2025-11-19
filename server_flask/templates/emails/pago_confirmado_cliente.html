@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pago Confirmado</title>
+
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header header-success">
+            <h1>Pago Confirmado</h1>
+            <p class="header-subtitle">Tu cita quedó pagada y confirmada</p>
+        </div>
+        <div class="email-content">
+            <p class="greeting">Hola <strong>{{ cliente_nombre }}</strong>,</p>
+            
+            <div class="success-message">
+                Hemos recibido tu pago exitosamente. Estos son los detalles de tu cita:
+            </div>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Profesional: </span>
+                    <span class="info-value">{{ profesional_nombre }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Fecha: </span>
+                    <span class="info-value">{{ fecha_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hora: </span>
+                    <span class="info-value">{{ hora_formateada }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Modalidad: </span>
+                    <span class="info-value">{{ modalidad_texto }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Lugar: </span>
+                    <span class="info-value">{{ lugar if lugar else '—' }}</span>
+                </div>
+            </div>
+            
+            <p class="note-text">Te enviaremos un recordatorio antes de la cita. Si necesitas reprogramar, ingresa a tu panel de usuario.</p>
+        </div>
+        <div class="email-footer">
+            <p class="footer-text">© 2025 PsicoPlus. Todos los derechos reservados.</p>
+            <p class="footer-text">Este es un correo automático, por favor no responder.</p>
+        </div>
+    </div>
+</body>
+</html>
