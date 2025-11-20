@@ -4,7 +4,7 @@ import threading
 from datetime import datetime, timedelta
 from flask_mail import Message
 from flask import current_app
-from services.notification_service import notification_service
+import logging
 
 
 class VerificationHelper:
@@ -52,16 +52,27 @@ class VerificationHelper:
         def send_async():
             with app.app_context():
                 try:
+                    app.logger.info(f"Intentando enviar email a {recipient}")
+                    app.logger.info(f"Mail object: {mail}")
+                    app.logger.info(f"MAIL_SERVER: {app.config.get('MAIL_SERVER')}")
+                    app.logger.info(f"MAIL_PORT: {app.config.get('MAIL_PORT')}")
+                    app.logger.info(f"MAIL_DEFAULT_SENDER: {app.config.get('MAIL_DEFAULT_SENDER')}")
+                    
                     msg = Message(
                         'Verificación de Cuenta - PsicoPlus',
-                        sender=('PsicoPlus', 'psicoplus25@gmail.com'),
+                        sender=('PsicoPlus', app.config.get('MAIL_DEFAULT_SENDER')),
                         recipients=[recipient]
                     )
                     msg.html = self._get_email_template(code)
+                    
+                    app.logger.info("Enviando mensaje...")
                     mail.send(msg)
+                    app.logger.info(f"✅ Email enviado exitosamente a {recipient}")
                     
                 except Exception as e:
-                    pass
+                    app.logger.error(f"❌ Error al enviar email a {recipient}: {str(e)}")
+                    import traceback
+                    app.logger.error(traceback.format_exc())
         
         thread = threading.Thread(target=send_async)
         thread.daemon = True
