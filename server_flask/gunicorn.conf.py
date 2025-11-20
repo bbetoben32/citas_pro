@@ -1,6 +1,8 @@
-bind = "0.0.0.0:8080"
+import os
+
+bind = f"0.0.0.0:{os.getenv('PORT', '8080')}"
 workers = 2
-timeout = 120  # 2 minutos
+timeout = 120
 worker_class = "sync"
 accesslog = "-"
 errorlog = "-"
