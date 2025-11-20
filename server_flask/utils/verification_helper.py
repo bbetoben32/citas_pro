@@ -1,6 +1,5 @@
 import random
 import string
-import threading
 from datetime import datetime, timedelta
 from flask_mail import Message
 from flask import current_app
@@ -46,38 +45,34 @@ class VerificationHelper:
         self._codes.pop(email, None)
     
     def send_verification_email(self, mail, recipient: str, code: str) -> bool:
-        """Envía el código de verificación por email (asíncrono)"""
-        app = current_app._get_current_object()
-        
-        def send_async():
-            with app.app_context():
-                try:
-                    app.logger.info(f"Intentando enviar email a {recipient}")
-                    app.logger.info(f"Mail object: {mail}")
-                    app.logger.info(f"MAIL_SERVER: {app.config.get('MAIL_SERVER')}")
-                    app.logger.info(f"MAIL_PORT: {app.config.get('MAIL_PORT')}")
-                    app.logger.info(f"MAIL_DEFAULT_SENDER: {app.config.get('MAIL_DEFAULT_SENDER')}")
-                    
-                    msg = Message(
-                        'Verificación de Cuenta - PsicoPlus',
-                        sender=('PsicoPlus', app.config.get('MAIL_DEFAULT_SENDER')),
-                        recipients=[recipient]
-                    )
-                    msg.html = self._get_email_template(code)
-                    
-                    app.logger.info("Enviando mensaje...")
-                    mail.send(msg)
-                    app.logger.info(f"✅ Email enviado exitosamente a {recipient}")
-                    
-                except Exception as e:
-                    app.logger.error(f"❌ Error al enviar email a {recipient}: {str(e)}")
-                    import traceback
-                    app.logger.error(traceback.format_exc())
-        
-        thread = threading.Thread(target=send_async)
-        thread.daemon = True
-        thread.start()
-        return True
+        """Envía el código de verificación por email"""
+        try:
+            app = current_app._get_current_object()
+            
+            app.logger.info(f"Intentando enviar email a {recipient}")
+            app.logger.info(f"MAIL_SERVER: {app.config.get('MAIL_SERVER')}")
+            app.logger.info(f"MAIL_PORT: {app.config.get('MAIL_PORT')}")
+            app.logger.info(f"MAIL_USE_TLS: {app.config.get('MAIL_USE_TLS')}")
+            app.logger.info(f"MAIL_USERNAME: {app.config.get('MAIL_USERNAME')}")
+            app.logger.info(f"MAIL_DEFAULT_SENDER: {app.config.get('MAIL_DEFAULT_SENDER')}")
+            
+            msg = Message(
+                'Verificación de Cuenta - PsicoPlus',
+                sender=('PsicoPlus', app.config.get('MAIL_DEFAULT_SENDER')),
+                recipients=[recipient]
+            )
+            msg.html = self._get_email_template(code)
+            
+            app.logger.info("Enviando mensaje...")
+            mail.send(msg)
+            app.logger.info(f"✅ Email enviado exitosamente a {recipient}")
+            return True
+            
+        except Exception as e:
+            app.logger.error(f"❌ Error al enviar email a {recipient}: {str(e)}")
+            import traceback
+            app.logger.error(traceback.format_exc())
+            return False
     
     def _get_email_template(self, code: str) -> str:
         """Retorna el template HTML del email"""
