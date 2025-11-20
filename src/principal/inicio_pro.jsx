@@ -32,7 +32,7 @@ export function InicioPro() {
 
                 if (response.ok) {
                     const datos = await response.json();
-                    setNombre(datos.nombre);
+                    //setNombre(datos.nombre);
                     localStorage.setItem('nombre_pro', datos.nombre);
                     localStorage.setItem('profesionalId', datos.id);
                 } else {

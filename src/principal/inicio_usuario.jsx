@@ -31,7 +31,7 @@ export function InicioUsuario() {
 
                 if (response.ok) {
                     const datos = await response.json();
-                    setNombre(datos.nombre);
+                    //setNombre(datos.nombre);
                     localStorage.setItem('nombre_usu', datos.nombre);
                     localStorage.setItem('clienteId', datos.id);
                 } else {
