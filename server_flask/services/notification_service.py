@@ -1,14 +1,14 @@
-import threading
+# services/notification_service.py
 import os
+import requests
 from flask import current_app
-from flask_mail import Message
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
 from premailer import transform
 
 
 class NotificationService:
-    """Servicio para envío de notificaciones por email"""
+    """Servicio para envío de notificaciones por email usando SendGrid API"""
     
     _jinja_env = None
     
@@ -21,54 +21,64 @@ class NotificationService:
         return NotificationService._jinja_env
     
     @staticmethod
-    def send_async_email(app, mail, msg):
-        """Envía un email de forma asíncrona"""
-        with app.app_context():
-            try:
-                mail.send(msg)
+    def send_email_sendgrid(recipient, subject, html_body):
+        """
+        Envía email usando SendGrid API HTTP.
+        Más rápido y confiable que SMTP en Railway.
+        """
+        api_key = os.getenv('SENDGRID_API_KEY')
+        sender_email = os.getenv('MAIL_DEFAULT_SENDER', 'psicoplus25@gmail.com')
+        
+        if not api_key:
+            current_app.logger.error("❌ SENDGRID_API_KEY no está configurada")
+            return False
+        
+        url = "https://api.sendgrid.com/v3/mail/send"
+        
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        # Manejar múltiples destinatarios
+        if isinstance(recipient, list):
+            to_list = [{"email": email} for email in recipient]
+        else:
+            to_list = [{"email": recipient}]
+        
+        data = {
+            "personalizations": [{"to": to_list}],
+            "from": {"email": sender_email, "name": "PsicoPlus"},
+            "subject": subject,
+            "content": [{"type": "text/html", "value": html_body}]
+        }
+        
+        try:
+            current_app.logger.info(f"📧 Enviando email a {recipient}...")
+            
+            response = requests.post(url, headers=headers, json=data, timeout=10)
+            
+            if response.status_code == 202:
+                current_app.logger.info(f"✅ Email enviado a {recipient}")
                 return True
-            except Exception as e:
+            else:
+                current_app.logger.error(f"❌ SendGrid error: {response.status_code} - {response.text}")
                 return False
+                
+        except requests.Timeout:
+            current_app.logger.error(f"❌ Timeout enviando email a {recipient}")
+            return False
+        except Exception as e:
+            current_app.logger.error(f"❌ Error enviando email: {str(e)}")
+            return False
     
     @staticmethod
     def send_email(mail, subject, recipients, html_body):
         """
-        Envía un email de forma asíncrona
-        
-        Args:
-            mail: Instancia de Flask-Mail
-            subject: Asunto del correo
-            recipients: Lista de destinatarios
-            html_body: Cuerpo HTML del correo
+        Envía un email usando SendGrid API.
+        El parámetro 'mail' se mantiene por compatibilidad pero ya no se usa.
         """
-        if not mail:
-            return False
-        
-        app = current_app._get_current_object()
-        
-        try:
-            msg = Message(
-                subject=subject,
-                sender=('PsicoPlus', current_app.config.get('MAIL_DEFAULT_SENDER', 'psicoplus25@gmail.com')),
-                recipients=recipients if isinstance(recipients, list) else [recipients]
-            )
-            msg.html = html_body
-            
-            
-            
-            thread = threading.Thread(
-                target=NotificationService.send_async_email,
-                args=(app, mail, msg)
-            )
-            thread.daemon = True
-            thread.start()
-            
-            return True
-        except Exception as e:
-           
-            import traceback
-            traceback.print_exc()
-            return False
+        return NotificationService.send_email_sendgrid(recipients, subject, html_body)
     
     @staticmethod
     def render_template(template_name, **context):
@@ -77,7 +87,6 @@ class NotificationService:
             env = NotificationService.get_jinja_env()
             template = env.get_template(template_name)
             
-            # Leer el archivo CSS
             css_path = os.path.join(
                 os.path.dirname(__file__), 
                 '..', 
@@ -89,21 +98,18 @@ class NotificationService:
             with open(css_path, 'r', encoding='utf-8') as f:
                 css_content = f.read()
             
-            # Renderizar template
             html = template.render(**context)
             
-            # Inyectar CSS en el <head>
             html_with_css = html.replace(
                 '</head>',
                 f'<style>{css_content}</style></head>'
             )
             
-            # Convertir a inline con Premailer
             html_inlined = transform(html_with_css)
             
             return html_inlined
         except Exception as e:
-            
+            current_app.logger.error(f"❌ Error renderizando template: {str(e)}")
             import traceback
             traceback.print_exc()
             return ""
@@ -150,7 +156,7 @@ class NotificationService:
             motivo=motivo
         )
         
-        NotificationService.send_email(
+        return NotificationService.send_email(
             mail,
             subject='Nueva Solicitud de Cita - PsicoPlus',
             recipients=profesional_email,
@@ -178,7 +184,7 @@ class NotificationService:
             monto_total=monto_txt
         )
         
-        NotificationService.send_email(
+        return NotificationService.send_email(
             mail,
             subject='Solicitud de Cita Confirmada - PsicoPlus',
             recipients=cliente_email,
@@ -212,7 +218,7 @@ class NotificationService:
             monto_total=monto_txt
         )
         
-        NotificationService.send_email(
+        return NotificationService.send_email(
             mail,
             subject='Cita Aceptada - Procede al Pago - PsicoPlus',
             recipients=cliente_email,
@@ -235,7 +241,7 @@ class NotificationService:
             motivo_rechazo=motivo_rechazo
         )
         
-        NotificationService.send_email(
+        return NotificationService.send_email(
             mail,
             subject='Cita No Aceptada - Explora Otras Opciones - PsicoPlus',
             recipients=cliente_email,
@@ -357,7 +363,6 @@ class NotificationService:
             recipients=cliente_email,
             html_body=html_body
         )
-
 
 
 notification_service = NotificationService()
