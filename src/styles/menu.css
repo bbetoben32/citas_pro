@@ -1,0 +1,241 @@
+/* Reset y estructura principal */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* Botón hamburguesa */
+.btn-hamburguesa {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: #102e50;
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-hamburguesa:hover {
+  background: #1e3a5f;
+}
+
+/* Contenedor principal del menú */
+.contenedor-principal {
+  width: 280px;
+  flex-shrink: 0;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+}
+
+/* Barra lateral */
+.barra-lateral {
+  width: 100%;
+  height: 100%;
+  background: #dfeff1;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto;
+}
+
+/* Navegación */
+.navegacion-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Items de navegación */
+.item-navegacion {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.item-navegacion:hover {
+  background: rgba(16, 46, 80, 0.1);
+  transform: translateX(5px);
+}
+
+.item-navegacion.activo {
+  background: rgba(16, 46, 80, 0.15);
+  color: #102e50;
+}
+
+.item-navegacion i {
+  color: #102e50;
+  font-size: 25px;
+}
+
+.icono-nav {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.texto-nav {
+  flex: 1;
+  font-size: 1rem;
+}
+
+/* Contenido principal */
+.contenido-principal {
+  flex: 1;
+  padding: 2rem;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* Media queries para móvil */
+@media (max-width: 768px) {
+  /* Mostrar botón hamburguesa */
+  .btn-hamburguesa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ocultar menú por defecto en móvil */
+  .contenedor-principal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  /* Mostrar menú cuando está abierto */
+  .contenedor-principal.menu-abierto {
+    transform: translateX(0);
+  }
+
+  /* Ajustar ancho del menú en móvil */
+  .barra-lateral {
+    width: 100%;
+    height: 100vh;
+  }
+
+  /* Contenido principal en móvil */
+  .contenido-principal {
+    padding: 60px 1rem 2rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-hamburguesa {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    top: 15px;
+    left: 15px;
+  }
+
+  .contenido-principal {
+    padding: 55px 1rem 1rem 1rem;
+  }
+}
+
+.btn-cerrar-sesion {
+  margin-top: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #dc2626;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-cerrar-sesion:hover {
+  color: #991b1b;
+}
+
+.btn-cerrar-sesion .icono-nav {
+  color: inherit;
+  font-size: 1.1rem;
+}
+
+.btn-cerrar-sesion .texto-nav {
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+
+.navegacion-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+@media (max-width: 768px) {
+  .btn-cerrar-sesion {
+    margin-top: 1rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-cerrar-sesion .icono-nav {
+    font-size: 1rem;
+  }
+
+  .btn-cerrar-sesion .texto-nav {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-cerrar-sesion {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-cerrar-sesion .icono-nav {
+    font-size: 0.95rem;
+  }
+
+  .btn-cerrar-sesion .texto-nav {
+    font-size: 0.85rem;
+  }
+}

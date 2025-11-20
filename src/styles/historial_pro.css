@@ -1,0 +1,335 @@
+/* Contenedor principal del historial profesional */
+.cr.historial-card-pro {
+    max-width: 100%;
+    margin: 0 auto 40px auto;
+    background-color: white;
+    padding: 0;
+    border: 2px solid #e8f1f5;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.cr.historial-card-pro:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-color: #d0dce8;
+}
+
+/* Encabezado del historial profesional */
+.encabezado-historial-pro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: linear-gradient(90deg, #1e3a5f 0%, #2d5a8c 100%);
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.encabezado-historial-pro > span {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.estado-badge-pro {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #7a8fa3;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge-icon {
+    font-size: 14px;
+}
+
+/* Contenido */
+.content-pro {
+    padding: 16px;
+    background-color: white;
+}
+
+/* Grid principal del historial profesional */
+.info-main--historial-pro {
+    border-radius: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* Secciones como tarjetas */
+.section-pro {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.section-pro:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    border-color: #d1d5db;
+}
+
+/* Sección destacada (primera columna) */
+.section-destacada-pro {
+    border: 1px solid #d0dce8;
+    background: #f0f4f9;
+}
+
+/* Sección de notas especial */
+.section-notas-pro {
+    border: 1px solid #d0dce8;
+    background: #f0f4f9;
+}
+
+/* Header de cada sección */
+.section-header-pro {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.section-pro h2 {
+    font-size: 13px;
+    color: #1e3a5f;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.2px;
+}
+
+.section-icon-pro {
+    font-size: 15px;
+    color: #6b7280;
+}
+
+.section-notas-pro .section-icon-pro {
+    color: #6b7280;
+}
+
+/* Items de información */
+.info-item-pro {
+    margin-bottom: 12px;
+}
+
+.info-item-pro:last-child {
+    margin-bottom: 0;
+}
+
+.info-label-pro {
+    margin-bottom: 4px;
+}
+
+.info-label-pro h4 {
+    font-size: 10px;
+    color: #7a8fa3;
+    font-weight: 600;
+    margin: 0 0 3px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.info-value-pro {
+    font-size: 14px;
+    color: #1e3a5f;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Información destacada */
+.info-destacada-pro {
+    font-size: 15px;
+    color: #1e3a5f;
+    font-weight: 700;
+}
+
+.inline-icon-pro {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* Monto de pago */
+.payment-amount-pro {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-top: 8px;
+}
+
+/* Sección de Notas */
+.nota-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nota-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.nota-textarea:focus {
+    outline: none;
+    border-color: #1e3a5f;
+}
+
+.nota-textarea:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.nota-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-cancelar-nota,
+.btn-guardar-nota {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-cancelar-nota {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+.btn-cancelar-nota:hover:not(:disabled) {
+    background-color: #e0e0e0;
+}
+
+.btn-guardar-nota {
+    background-color: #1e3a5f;
+    color: white;
+}
+
+.btn-guardar-nota:hover:not(:disabled) {
+    background-color: #102e50;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(30, 58, 95, 0.2);
+}
+
+.btn-cancelar-nota:disabled,
+.btn-guardar-nota:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Display de notas */
+.nota-display {
+    min-height: 100px;
+}
+
+.nota-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nota-contenido p {
+    margin: 0;
+    padding: 12px;
+    background-color: #f3f4f6;
+    border-left: 4px solid #6b7280;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #374151;
+    white-space: pre-wrap;
+}
+
+.nota-vacia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+}
+
+.nota-vacia p {
+    margin: 0;
+    color: #999;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.btn-editar-nota,
+.btn-agregar-nota {
+    padding: 8px 16px;
+    border: 2px solid #6b7280;
+    background-color: white;
+    color: #6b7280;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-end;
+}
+
+.btn-agregar-nota {
+    align-self: center;
+}
+
+.btn-editar-nota:hover,
+.btn-agregar-nota:hover {
+    background-color: #6b7280;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .cr.historial-card-pro {
+        width: 95%;
+        margin: 0 auto 24px auto;
+    }
+}
+
+@media (max-width: 968px) {
+    .info-main--historial-pro {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .cr.historial-card-pro {
+        padding: 16px;
+    }
+    
+    .nota-textarea {
+        min-height: 100px;
+    }
+}

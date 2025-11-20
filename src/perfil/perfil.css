@@ -1,0 +1,301 @@
+/* Botón principal de configuración */
+.boton-configuracion-principal {
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--primary) 0%, #1a3a5c 50%, var(--primary) 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 46, 80, 0.15);
+}
+
+.boton-configuracion-principal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 46, 80, 0.25);
+}
+
+.boton-configuracion-principal i {
+  font-size: 20px;
+}
+
+/* Panel de configuración */
+.panel-configuracion-perfil {
+  margin-top: 20px;
+  background: var(--background);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(16, 46, 80, 0.1);
+  animation: animacion-deslizar-abajo 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+@keyframes animacion-deslizar-abajo {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Grid de opciones */
+.grid-opciones-configuracion {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Botón de opción */
+.boton-opcion-configuracion {
+  padding: 15px;
+  background: var(--muted);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.boton-opcion-configuracion:hover {
+  background: var(--secondary);
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(16, 46, 80, 0.08);
+}
+
+.boton-opcion-configuracion.opcion-activa {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.boton-opcion-configuracion i {
+  font-size: 20px;
+}
+
+/* Contenedor de formulario */
+.contenedor-formulario-configuracion {
+  margin-top: 20px;
+  padding: 20px;
+  background: var(--muted);
+  border-radius: 8px;
+  animation: animacion-aparecer 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+@keyframes animacion-aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Grupo de campo */
+.grupo-campo-configuracion {
+  margin-bottom: 20px;
+}
+
+.grupo-campo-configuracion label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--foreground);
+  font-size: 14px;
+}
+
+.grupo-campo-configuracion label i {
+  margin-right: 6px;
+  color: var(--primary);
+}
+
+.grupo-campo-configuracion input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.grupo-campo-configuracion input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(16, 46, 80, 0.1);
+}
+
+/* Wrapper para campo de contraseña */
+.envoltorio-password-configuracion {
+  position: relative;
+}
+
+/* Botón toggle de contraseña */
+.boton-toggle-password-configuracion {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted-foreground);
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.boton-toggle-password-configuracion:hover {
+  color: var(--primary);
+}
+
+/* Botones de acción */
+.boton-accion-configuracion {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.boton-accion-configuracion-primario {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 46, 80, 0.15);
+}
+
+.boton-accion-configuracion-primario:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 46, 80, 0.2);
+}
+
+.boton-accion-configuracion:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Botón tipo link */
+.boton-enlace-configuracion {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.boton-enlace-configuracion:hover {
+  color: var(--primary-hover);
+}
+
+/* Mensajes */
+.mensaje-configuracion {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.mensaje-configuracion.mensaje-error {
+  background: #fee;
+  color: #c33;
+  border: 1px solid #fcc;
+}
+
+.mensaje-configuracion.mensaje-exito {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Input de código */
+.input-codigo-configuracion {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 8px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* Correo de verificación */
+.correo-verificacion-configuracion {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--muted-foreground);
+}
+
+.correo-verificacion-configuracion strong {
+  color: var(--primary);
+}
+
+/* Input de archivo */
+.envoltorio-input-archivo-configuracion {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+.envoltorio-input-archivo-configuracion input[type=file] {
+  position: absolute;
+  left: -9999px;
+}
+
+.etiqueta-input-archivo-configuracion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--background);
+  border: 2px dashed var(--primary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.etiqueta-input-archivo-configuracion:hover {
+  background: var(--muted);
+  border-color: var(--primary-hover);
+}
+
+/* Archivo seleccionado */
+.archivo-seleccionado-configuracion {
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--secondary);
+  border-radius: 6px;
+  color: var(--primary);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+}

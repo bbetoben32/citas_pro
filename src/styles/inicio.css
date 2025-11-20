@@ -1,0 +1,486 @@
+.inicio-body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1b4965;
+}
+
+.inicio-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.inicio-encabezado {
+  background: linear-gradient(to right, rgba(46, 125, 158, 0.85), rgba(27, 73, 101, 0.85)),
+    url("https://images.pexels.com/photos/3182796/pexels-photo-3182796.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  color: #f0f8fb;
+  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.inicio-enc-contenido {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.inicio-encabezado h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: #f8fafc;
+}
+
+.inicio-encabezado p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+  color: #f0f8fb;
+}
+
+.inicio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 1rem;
+  gap: 0.5rem;
+}
+
+.inicio-btn-small {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 0.35rem;
+  background-color: #475569;
+  color: #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.inicio-btn-small:hover {
+  background-color: #334155;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.inicio {
+  background-color: #fafdfe;
+  color: #1e3a5f;
+  min-width: 90px;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inicio:hover {
+  background-color: #aeb1b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inicio-section-title {
+  text-align: center;
+  margin: 3rem 0 2rem;
+  color: #00b5e2;
+  font-size: 2.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.inicio-info-empresa {
+  padding: 2rem 0;
+}
+
+.inicio-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.inicio-card {
+  background: linear-gradient(145deg, #e8f4f8, #d4e8f0);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(27, 73, 101, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(46, 125, 158, 0.1);
+}
+
+.inicio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(46, 125, 158, 0.2);
+}
+
+.inicio-card-header {
+  background: rgba(46, 125, 158, 0.1);
+  padding: 1.25rem;
+  border-bottom: 1px solid rgba(46, 125, 158, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.inicio-card-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b4965;
+}
+
+.inicio-icon-badge {
+  background: rgba(46, 125, 158, 0.2);
+  padding: 0.4rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.inicio-card-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.inicio-valores-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inicio-valores-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1b4965;
+}
+
+.inicio-valores-list i {
+  color: #2e7d9e;
+}
+
+.inicio-servicios-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inicio-servicios-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1b4965;
+}
+
+.inicio-servicios-list i {
+  color: #2e7d9e;
+}
+
+.inicio-reservations-title {
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  color: #1b4965;
+  font-weight: 600;
+}
+
+.inicio-reservations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inicio-reservation-item {
+  background: rgba(212, 232, 240, 0.5);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border-left: 3px solid #2e7d9e;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.inicio-reservation-item p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.inicio-reservation-user,
+.inicio-reservation-date,
+.inicio-reservation-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.inicio-reservation-user i,
+.inicio-reservation-date i,
+.inicio-reservation-time i {
+  color: #1b4965;
+  width: 16px;
+  text-align: center;
+}
+
+.inicio-no-reservations {
+  background: rgba(212, 232, 240, 0.7);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  color: #1b4965;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.inicio-card-footer {
+  padding: 1.25rem;
+  background: rgba(46, 125, 158, 0.05);
+  border-top: 1px solid rgba(46, 125, 158, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.inicio-btn-card {
+  background: #2e7d9e;
+  color: #f0f8fb;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.inicio-btn-card:hover {
+  background: #1b4965;
+  transform: translateY(-2px);
+}
+
+.inicio-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.inicio-modal-content {
+  background: linear-gradient(145deg, #e8f4f8, #d4e8f0);
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: inicioModalFadeIn 0.3s ease;
+  border: 1px solid rgba(46, 125, 158, 0.1);
+}
+
+@keyframes inicioModalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inicio-modal-header {
+  background: rgba(46, 125, 158, 0.1);
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(46, 125, 158, 0.2);
+}
+
+.inicio-modal-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b4965;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inicio-btn-close {
+  background: transparent;
+  border: none;
+  color: #2e7d9e;
+  font-size: 1.25rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.inicio-btn-close:hover {
+  background: rgba(46, 125, 158, 0.1);
+  color: #1b4965;
+}
+
+.inicio-form-modal {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inicio-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inicio-form-group label {
+  font-weight: 500;
+  color: #1b4965;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inicio-form-group input,
+.inicio-form-group select {
+  padding: 0.85rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(46, 125, 158, 0.2);
+  background: #f0f8fb;
+  color: #1b4965;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.inicio-form-group input:focus,
+.inicio-form-group select:focus {
+  outline: none;
+  border-color: rgba(46, 125, 158, 0.5);
+  box-shadow: 0 0 0 2px rgba(46, 125, 158, 0.1);
+}
+
+.inicio-form-group input::placeholder {
+  color: #94a3b8;
+}
+
+.inicio-form-help {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+.inicio-form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.inicio-btn-primary {
+  background: #2563eb;
+  color: #f1f5f9;
+  flex: 1;
+}
+
+.inicio-btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inicio-btn-secondary {
+  background: #475569;
+  color: #f1f5f9;
+  flex: 1;
+}
+
+.inicio-btn-secondary:hover {
+  background: #334155;
+  transform: translateY(-2px);
+}
+
+.inicio-footer {
+  background: #1e293b;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 4rem;
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .inicio-encabezado {
+    height: auto;
+    padding: 4rem 0;
+  }
+
+  .inicio-encabezado h2 {
+    font-size: 2.25rem;
+  }
+
+  .inicio-form-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .inicio-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .inicio-icon-badge {
+    align-self: flex-start;
+  }
+
+  .inicio-btn {
+    width: 100%;
+  }
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,248 @@
+.cr {
+  max-width: 100%;
+  margin: 0 auto 40px;
+  background-color: #fff;
+  padding: 20px;
+  border: 2px solid #2196F3;
+  border-radius: 12px;
+  width: 100%;
+  min-height: 320px;
+}
+
+.encabezado {
+  background-color: #1e3a5f;
+  padding: 12px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.encabezado span {
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.content {
+  padding: 0;
+}
+
+/* Contenedor principal de información */
+.info-main-card {
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* Secciones como tarjetas compactas */
+.section {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Header de cada sección */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.section h2 {
+  font-size: 14px;
+  color: #1e3a5f;
+  font-weight: 600;
+  margin: 0;
+}
+
+.section-icon {
+  font-size: 14px;
+  color: #5C6BC0;
+}
+
+/* Información del profesional */
+.profesional-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Items de información */
+.info-item {
+  margin-bottom: 10px;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  margin-bottom: 3px;
+}
+
+.info-label h4 {
+  font-size: 11px;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.info-value {
+  font-size: 13px;
+  color: #1e3a5f;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.inline-icon {
+  font-size: 11px;
+  color: #5C6BC0;
+}
+
+/* Sección de pago */
+.payment-section {
+  background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+  border-radius: 12px;
+  padding: 15px 20px;
+  width: calc(100%);
+  margin: 0 auto;
+}
+
+.payment-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.payment-info {
+  flex: 1;
+}
+
+.payment-amount {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0;
+}
+
+.payment-amount p {
+  font-size: 28px;
+  color: #1e3a5f;
+  font-weight: 700;
+  margin: 0;
+}
+
+.payment-button-container {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.payment-button {
+  background-color: #1e3a5f;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.payment-button:hover {
+  background-color: #152a47;
+  box-shadow: 0 4px 8px rgba(30, 58, 95, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cr {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .encabezado {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 15px;
+    text-align: center;
+  }
+
+  .encabezado span {
+    font-size: 13px;
+  }
+
+  /* Los 3 componentes uno debajo del otro */
+  .info-main-card {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .section {
+    padding: 15px;
+  }
+
+  .section h2 {
+    font-size: 15px;
+  }
+
+  .info-label h4 {
+    font-size: 12px;
+  }
+
+  .info-value {
+    font-size: 14px;
+  }
+
+  /* Sección de pago también apilada */
+  .payment-section {
+    padding: 15px;
+  }
+
+  .payment-container {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .payment-info {
+    text-align: center;
+  }
+
+  .payment-amount p {
+    font-size: 24px;
+  }
+
+  .payment-button-container {
+    align-items: center;
+    width: 100%;
+  }
+
+  .payment-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,342 @@
+/* Tarjeta principal del historial */
+.historial-card {
+    max-width: 1100px;
+    margin: 0 auto 30px auto;
+    background-color: #fafafa;
+    padding: 0;
+    border: 3px solid #00B5E2;
+    border-radius: 20px;
+    width: 100%;
+    min-height: 280px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 181, 226, 0.15);
+}
+
+/* Encabezado del historial con badge */
+.encabezado-historial {
+    background: linear-gradient(135deg, #102e50 0%, #1a3a5c 100%);
+    padding: 16px 24px;
+    border-radius: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.encabezado-historial span {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Badge de estado */
+.estado-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.badge-icon {
+    color: #A5D6A7;
+    font-size: 14px;
+}
+
+.estado-badge span {
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Grid del historial - 3 columnas */
+.info-main-card-historial {
+    border-radius: 0;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    background-color: white;
+}
+
+/* Secciones del historial */
+.historial-card .section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+}
+
+.historial-card .section:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Sección destacada (primera columna) */
+.section-destacada {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-left: 4px solid #757575;
+}
+
+/* Header de secciones */
+.historial-card .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.historial-card .section h2 {
+    font-size: 14px;
+    color: #424242;
+    font-weight: 600;
+    margin: 0;
+}
+
+.historial-card .section-icon {
+    font-size: 16px;
+    color: #757575;
+}
+
+/* Items de información */
+.historial-card .info-item {
+    margin-bottom: 12px;
+}
+
+.historial-card .info-item:last-child {
+    margin-bottom: 0;
+}
+
+.historial-card .info-label h4 {
+    font-size: 11px;
+    color: #757575;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.historial-card .info-value {
+    font-size: 13px;
+    color: #424242;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Valor destacado */
+.info-destacada {
+    font-size: 15px;
+    color: #1e3a5f;
+    font-weight: 700;
+}
+
+/* Observaciones con estilo especial */
+.info-observaciones {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Iconos inline */
+.historial-card .inline-icon {
+    font-size: 12px;
+    color: #757575;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .historial-card {
+        width: 95%;
+    }
+    
+    .info-main-card-historial {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .historial-card {
+        max-width: 100%;
+        margin: 0 auto 16px auto;
+        border: 2px solid #00B5E2;
+        border-radius: 12px;
+        min-height: auto;
+        box-shadow: 0 2px 8px rgba(0, 181, 226, 0.1);
+    }
+
+    .encabezado-historial {
+        padding: 12px 16px;
+    }
+
+    .encabezado-historial span {
+        font-size: 14px;
+    }
+
+    .estado-badge {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+
+    .estado-badge span {
+        font-size: 12px;
+    }
+
+    .info-main-card-historial {
+        padding: 16px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .historial-card .section {
+        padding: 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background-color: #f9fafb;
+    }
+
+    .historial-card .section-header {
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+        gap: 6px;
+    }
+
+    .historial-card .section h2 {
+        font-size: 13px;
+    }
+
+    .historial-card .section-icon {
+        font-size: 14px;
+        color: #6b7280;
+    }
+
+    .historial-card .info-item {
+        margin-bottom: 8px;
+    }
+
+    .historial-card .info-label h4 {
+        font-size: 10px;
+        color: #6b7280;
+    }
+
+    .historial-card .info-value {
+        font-size: 12px;
+        color: #374151;
+    }
+
+    .historial-card .inline-icon {
+        font-size: 11px;
+        color: #6b7280;
+    }
+
+    .info-destacada {
+        font-size: 13px;
+    }
+
+    .info-observaciones {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .historial-card {
+        max-width: 100%;
+        margin: 0 auto 12px auto;
+        border: 2px solid #00B5E2;
+        border-radius: 10px;
+        min-height: auto;
+    }
+
+    .encabezado-historial {
+        padding: 10px 12px;
+    }
+
+    .encabezado-historial span {
+        font-size: 12px;
+    }
+
+    .estado-badge {
+        padding: 3px 8px;
+        font-size: 11px;
+    }
+
+    .estado-badge span {
+        font-size: 11px;
+    }
+
+    .badge-icon {
+        font-size: 11px;
+    }
+
+    .info-main-card-historial {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .historial-card .section {
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background-color: #f9fafb;
+        box-shadow: none;
+    }
+
+    .historial-card .section:hover {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .historial-card .section-header {
+        padding-bottom: 6px;
+        margin-bottom: 8px;
+        gap: 6px;
+    }
+
+    .historial-card .section h2 {
+        font-size: 11px;
+    }
+
+    .historial-card .section-icon {
+        font-size: 13px;
+    }
+
+    .historial-card .info-item {
+        margin-bottom: 6px;
+    }
+
+    .historial-card .info-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .historial-card .info-label h4 {
+        font-size: 9px;
+        margin-bottom: 2px;
+    }
+
+    .historial-card .info-value {
+        font-size: 11px;
+        gap: 4px;
+    }
+
+    .historial-card .inline-icon {
+        font-size: 10px;
+    }
+
+    .info-destacada {
+        font-size: 12px;
+    }
+
+    .info-observaciones {
+        font-size: 10px;
+    }
+}

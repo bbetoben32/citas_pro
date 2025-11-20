@@ -1,0 +1,378 @@
+/* CitaModal.css */
+
+
+
+/* Overlay del modal con difuminado */
+.cita-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(108, 113, 120, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+    animation: cita-modal-fade-in 0.3s ease;
+}
+
+@keyframes cita-modal-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Contenedor principal del modal */
+.cita-modal-container {
+    background: var(--background);
+    border-radius: 16px;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(16, 46, 80, 0.25);
+    border: none;
+    overflow: hidden;
+    animation: cita-modal-slide-up 0.4s ease-out;
+}
+
+@keyframes cita-modal-slide-up {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Header del modal */
+.cita-modal-header {
+    background: var(--primary);
+    padding: 2rem 2.5rem;
+    color: var(--background);
+    border-bottom: 3px solid var(--accent);
+}
+
+.cita-modal-header-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--background);
+}
+
+.cita-modal-header-icon {
+    font-size: 1.5rem;
+}
+
+.cita-modal-header-subtitle {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    font-weight: 400;
+    color: var(--secondary);
+}
+
+/* Body del modal */
+.cita-modal-body {
+    padding: 2.5rem;
+    background: var(--background);
+}
+
+/* Form groups */
+.cita-modal-form-group {
+    margin-bottom: 2rem;
+}
+
+.cita-modal-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.cita-modal-form-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--foreground);
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+}
+
+.cita-modal-label-icon {
+    margin-right: 0.6rem;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+/* Contenedor de botones de modalidad */
+.cita-modal-modalidad-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.cita-modal-modalidad-button {
+    padding: 1.75rem 1.5rem;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: var(--background);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cita-modal-modalidad-button:hover {
+    border-color: var(--accent);
+    background: var(--muted);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 144, 217, 0.15);
+}
+
+.cita-modal-modalidad-button.cita-modal-modalidad-active {
+    border-color: var(--accent);
+    background: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.1);
+}
+
+.cita-modal-modalidad-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--stat-bg);
+    transition: all 0.3s ease;
+    border: 2px solid var(--border);
+}
+
+.cita-modal-modalidad-button.cita-modal-modalidad-active .cita-modal-modalidad-icon-wrapper {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.cita-modal-modalidad-icon {
+    font-size: 28px;
+    color: var(--muted-foreground);
+    transition: all 0.3s ease;
+}
+
+.cita-modal-modalidad-button.cita-modal-modalidad-active .cita-modal-modalidad-icon {
+    color: var(--background);
+}
+
+.cita-modal-modalidad-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--foreground);
+}
+
+.cita-modal-modalidad-description {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+/* Inputs y textareas */
+.cita-modal-form-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: inherit;
+}
+
+.cita-modal-form-input::placeholder {
+    color: var(--muted-foreground);
+}
+
+.cita-modal-form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.1);
+    background: var(--background);
+}
+
+.cita-modal-form-input.cita-modal-input-error {
+    border-color: var(--danger);
+    background: #fff5f5;
+}
+
+.cita-modal-form-input.cita-modal-input-error:focus {
+    box-shadow: 0 0 0 3px rgba(197, 48, 48, 0.1);
+}
+
+.cita-modal-form-textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 1rem;
+    resize: vertical;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    outline: none;
+    background: var(--background);
+    color: var(--foreground);
+    min-height: 130px;
+    line-height: 1.6;
+}
+
+.cita-modal-form-textarea::placeholder {
+    color: var(--muted-foreground);
+}
+
+.cita-modal-form-textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.1);
+    background: var(--background);
+}
+
+/* Hints */
+.cita-modal-form-hint {
+    margin: 0.75rem 0 0 0;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* Mensajes de error */
+.cita-modal-error-message {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #fff5f5;
+    border: 1px solid #feb2b2;
+    border-radius: 8px;
+    color: var(--danger);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.cita-modal-error-icon {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+}
+
+/* Footer del modal */
+.cita-modal-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem 2.5rem;
+    background: var(--muted);
+    border-top: 1px solid var(--border);
+}
+
+/* Botones */
+.cita-modal-button {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cita-modal-button-icon {
+    font-size: 1.1rem;
+}
+
+.cita-modal-button-cancelar {
+    background: var(--secondary);
+    color: var(--foreground);
+    border: 2px solid var(--border);
+}
+
+.cita-modal-button-cancelar:hover {
+    background: var(--secondary-hover);
+    border-color: var(--muted-foreground);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 46, 80, 0.1);
+}
+
+.cita-modal-button-aceptar {
+    background: #102e50;
+    border: 2px solid #102e50;
+    color: white;
+}
+
+.cita-modal-button-aceptar:hover {
+    background: #0c1f36;
+    border-color: #0c1f36;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 46, 80, 0.2);
+}
+
+.cita-modal-button-rechazar {
+    background: #102e50;
+    border: 2px solid #102e50;
+    color: white;
+}
+
+.cita-modal-button-rechazar:hover {
+    background: #0c1f36;
+    border-color: #0c1f36;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 46, 80, 0.2);
+}
+
+.cita-modal-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .cita-modal-container {
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    .cita-modal-header {
+        padding: 1.5rem 1.75rem;
+    }
+
+    .cita-modal-header-title {
+        font-size: 1.4rem;
+    }
+
+    .cita-modal-body {
+        padding: 1.75rem;
+    }
+
+    .cita-modal-footer {
+        padding: 1.5rem 1.75rem;
+        flex-direction: column;
+    }
+
+    .cita-modal-modalidad-container {
+        grid-template-columns: 1fr;
+    }
+
+    .cita-modal-button {
+        width: 100%;
+    }
+}

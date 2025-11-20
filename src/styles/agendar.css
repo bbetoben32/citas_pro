@@ -1,0 +1,274 @@
+/* AgendarCita.css */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.appointment-container {
+    background: white;
+    border-radius: 12px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Header */
+.appointment-header {
+    background: #1a1a1a;
+    color: white;
+    padding: 28px 30px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+    opacity: 0.7;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+.professional-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.professional-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: #2d2d2d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+}
+
+.professional-details h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.professional-details p {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* Body */
+.appointment-body {
+    padding: 28px 30px;
+}
+
+.form-section {
+    margin-bottom: 24px;
+}
+
+.form-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #1a1a1a;
+    font-size: 14px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s;
+    background: white;
+    color: #1a1a1a;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.05);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Summary */
+.summary-card {
+    background: #f5f5f5;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    padding-top: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a1a1a;
+}
+
+.summary-label {
+    color: #666;
+    font-size: 13px;
+}
+
+.summary-value {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* Button */
+.btn-schedule {
+    width: 100%;
+    padding: 12px 16px;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-schedule:hover {
+    background: #2d2d2d;
+}
+
+.btn-schedule:active {
+    transform: scale(0.98);
+}
+
+/* Scrollbar */
+.appointment-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.appointment-container::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+.appointment-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.appointment-container::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+@media (max-width: 640px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .appointment-body {
+        padding: 20px;
+    }
+
+    .appointment-header {
+        padding: 20px;
+    }
+}

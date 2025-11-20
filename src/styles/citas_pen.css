@@ -1,0 +1,320 @@
+.citasPendientesContenedor {
+    max-width: 100%;
+    margin: 0 auto 24px auto;
+    background-color: white;
+    padding: 0;
+    border: 2px solid #e8f1f5;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.citasPendientesContenedor:hover {
+    box-shadow: 0 4px 16px rgba(0, 181, 226, 0.12);
+    border-color: #00B5E2;
+}
+
+.citasPendientesContent {
+    padding: 24px;
+    background-color: white;
+}
+
+/* Grid principal */
+.citasPendientesGridPrincipal {
+    border-radius: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+/* Secciones como tarjetas */
+.citasPendientesSeccionTarjeta {
+    background: linear-gradient(135deg, #f8fbfe 0%, #f0f7fc 100%);
+    border: 1px solid #dfe8f0;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.citasPendientesSeccionTarjeta:hover {
+    box-shadow: 0 4px 12px rgba(30, 58, 95, 0.08);
+    border-color: #c5dff0;
+    transform: translateY(-2px);
+}
+
+/* Header de cada sección */
+.citasPendientesSeccionEncabezado {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #dfe8f0;
+}
+
+.citasPendientesSeccionTarjeta h2 {
+    font-size: 13px;
+    color: #1e3a5f;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.2px;
+}
+
+.citasPendientesIconoSeccion {
+    font-size: 15px;
+    color: #00B5E2;
+}
+
+/* Items de información */
+.citasPendientesCabeceraProf {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.citasPendientesItemInfo {
+    margin-bottom: 12px;
+}
+
+.citasPendientesItemInfo:last-child {
+    margin-bottom: 0;
+}
+
+.citasPendientesEtiquetaInfo {
+    margin-bottom: 4px;
+}
+
+.citasPendientesEtiquetaInfo h4 {
+    font-size: 10px;
+    color: #7a8fa3;
+    font-weight: 600;
+    margin: 0 0 3px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.citasPendientesValorInfo {
+    font-size: 14px;
+    color: #1e3a5f;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.citasPendientesIconoInline {
+    font-size: 12px;
+    color: #00B5E2;
+}
+
+/* Monto de pago más grande */
+.citasPendientesMontoGrande {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+/* Sección de total a pagar debajo */
+.citasPendientesSeccionPago {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.citasPendientesTarjetaPago {
+    flex: 0 0 auto;
+}
+
+/* Monto de pago pequeño */
+.citasPendientesMontoPequeno {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+/* Diseño único para total a pagar */
+.citasPendientesTotalPago {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.citasPendientesIconoPago {
+    font-size: 24px;
+    color: #6b7280;
+    flex-shrink: 0;
+}
+
+.citasPendientesContenidoPago {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.citasPendientesEtiquetaPago {
+    font-size: 12px;
+    color: #7a8fa3;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.citasPendientesMontoPequeno {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+/* Botones de acción */
+.citasPendientesBotonesAccion {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 0;
+    flex: 0 0 auto;
+}
+
+.citasPendientesBotonRechazar,
+.citasPendientesBotonAceptar {
+    padding: 12px 32px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.citasPendientesBotonRechazar {
+    background-color: #e53935;
+    color: white;
+}
+
+.citasPendientesBotonRechazar:hover {
+    background-color: #c62828;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+}
+
+.citasPendientesBotonAceptar {
+    background-color: #43a047;
+    color: white;
+}
+
+.citasPendientesBotonAceptar:hover {
+    background-color: #2e7d32;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);
+}
+
+/* ==================== RESPONSIVE MOBILE ==================== */
+@media (max-width: 768px) {
+    .citasPendientesContent {
+        padding: 16px;
+    }
+
+    /* Grid principal se vuelve una sola columna */
+    .citasPendientesGridPrincipal {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    /* Ajustes para las tarjetas en móvil */
+    .citasPendientesSeccionTarjeta {
+        padding: 14px;
+    }
+
+    .citasPendientesSeccionTarjeta h2 {
+        font-size: 12px;
+    }
+
+    .citasPendientesIconoSeccion {
+        font-size: 14px;
+    }
+
+    .citasPendientesValorInfo {
+        font-size: 13px;
+    }
+
+    /* Sección de pago se adapta verticalmente */
+    .citasPendientesSeccionPago {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .citasPendientesTotalPago {
+        width: 100%;
+        padding: 14px 16px;
+    }
+
+    .citasPendientesIconoPago {
+        font-size: 20px;
+    }
+
+    .citasPendientesMontoPequeno {
+        font-size: 16px;
+    }
+
+    /* Botones se adaptan a móvil */
+    .citasPendientesBotonesAccion {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .citasPendientesBotonRechazar,
+    .citasPendientesBotonAceptar {
+        flex: 1;
+        padding: 12px 20px;
+        font-size: 14px;
+        justify-content: center;
+    }
+
+    /* Desactivar hover effects en móvil */
+    .citasPendientesSeccionTarjeta:hover {
+        transform: none;
+    }
+
+    .citasPendientesBotonRechazar:hover,
+    .citasPendientesBotonAceptar:hover {
+        transform: none;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .citasPendientesContent {
+        padding: 12px;
+    }
+
+    .citasPendientesContenedor {
+        margin: 0 auto 16px auto;
+        border-radius: 12px;
+    }
+
+    .citasPendientesSeccionTarjeta {
+        padding: 12px;
+    }
+
+    .citasPendientesBotonRechazar,
+    .citasPendientesBotonAceptar {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
