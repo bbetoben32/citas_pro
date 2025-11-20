@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 // Tu Client ID de PayPal Sandbox
-const PAYPAL_CLIENT_ID = "TU_CLIENT_ID_DE_PAYPAL_SANDBOX";
+const PAYPAL_CLIENT_ID = "AXhZRD0uJVqhIxjjpBsxpfbTbwB8Y_QcCCPspCyduIp_Hlb-g_gaPbhUG0QtFMQVQ67CA3e2aHDA2bG_";
 
 export default function PayPalButtonCita({ cita, onPagoExitoso }) {
   const btnRef = useRef(null);
@@ -16,9 +16,9 @@ export default function PayPalButtonCita({ cita, onPagoExitoso }) {
   useEffect(() => {
     const scriptId = "paypal-sdk";
     
-    // Si ya existe el script, marcar como listo
+    // Si ya existe el script y PayPal está disponible
     if (document.getElementById(scriptId)) {
-      if (window.paypal) {
+      if (window.paypal?.Buttons) {
         setSdkReady(true);
       }
       return;
@@ -40,15 +40,11 @@ export default function PayPalButtonCita({ cita, onPagoExitoso }) {
     };
 
     document.body.appendChild(script);
-
-    return () => {
-      // No removemos el script para evitar recargas
-    };
   }, []);
 
   // Renderizar botón cuando el SDK esté listo
   useEffect(() => {
-    if (!sdkReady || !window.paypal || !btnRef.current || renderedRef.current) {
+    if (!sdkReady || !window.paypal?.Buttons || !btnRef.current || renderedRef.current) {
       return;
     }
 
