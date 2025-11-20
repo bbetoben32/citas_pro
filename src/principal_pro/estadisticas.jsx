@@ -33,7 +33,7 @@ export function Estadisticas() {
       if (filtros.fecha_inicio) params.append('fecha_inicio', filtros.fecha_inicio);
       if (filtros.fecha_fin) params.append('fecha_fin', filtros.fecha_fin);
       
-      const url = ``${API_URL}/citas/estadisticas${params.toString() ? '?' + params.toString() : ''}`;
+      const url = `${API_URL}/citas/estadisticas${params.toString() ? '?' + params.toString() : ''}`;
 
       const response = await fetch(url, {
         method: 'GET',

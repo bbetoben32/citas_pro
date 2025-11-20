@@ -27,7 +27,7 @@ export function BuscarProfesional() {
 
   const obtenerProfesionales = async () => {
     try {
-      const response = await fetch('`${API_URL}/profesionales/');
+      const response = await fetch(`${API_URL}/profesionales/`);
       if (response.ok) {
         const datos = await response.json();
         setProfesionales(datos);

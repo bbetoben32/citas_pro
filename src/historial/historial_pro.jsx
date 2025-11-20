@@ -18,7 +18,7 @@ export default function HistorialPro() {
         setCargando(true);
         
         try {
-            const response = await fetch('`${API_URL}/citas/profesional', {
+            const response = await fetch(`${API_URL}/citas/profesional`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

@@ -25,7 +25,7 @@ export default function PayPalButtonCita({ cita, onPagoExitoso }) {
 
         // 1) Crear el pago en TU backend (retorna payment_id)
         payment: function () {
-          return fetch(``${API_URL}/citas/${cita.id}/pagar/iniciar`, {
+          return fetch(`${API_URL}/citas/${cita.id}/pagar/iniciar`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

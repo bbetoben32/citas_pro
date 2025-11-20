@@ -23,7 +23,7 @@ export function Perfilpro() {
     }
 
     try {
-      const response = await fetch("`${API_URL}/profesionales/perfil", {
+      const response = await fetch(`${API_URL}/profesionales/perfil`, {
         method: "GET",
         headers: { 
           "Authorization": `Bearer ${token}`

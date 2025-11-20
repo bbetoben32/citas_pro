@@ -59,7 +59,7 @@ export function ConfiguracionPerfilProfesional() {
       return
     }
 
-    const endpoint = "`${API_URL}/profesionales/cambiar-password/solicitar"
+    const endpoint = `${API_URL}/profesionales/cambiar-password/solicitar`
 
     try {
       const response = await fetch(endpoint, {

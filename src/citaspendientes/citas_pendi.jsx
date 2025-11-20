@@ -20,7 +20,7 @@ export function Citas_pendi() {
         const token = localStorage.getItem('token_pro');
         
         try {
-            const response = await fetch('`${API_URL}/citas/profesional?estado=pendiente', {
+            const response = await fetch(`${API_URL}/citas/profesional?estado=pendiente`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
