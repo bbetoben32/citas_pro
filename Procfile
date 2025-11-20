@@ -1,0 +1,1 @@
+web: gunicorn --bind 0.0.0.0:$PORT --timeout 120 --workers 2 --chdir server_flask app:create_app()git add Procfile
