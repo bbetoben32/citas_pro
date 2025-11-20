@@ -12,5 +12,6 @@ class PayPalConfig:
     PAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET', 'ELrbZuqXWuNgyy6g452InlIpdSys5kgiJk5to-9cizxiaDbqtubgLQv7wTJyE7XDjaa5wlxQpERyO1TM')
     
     # URLs de retorno
-    PAYPAL_RETURN_URL = 'http://localhost:3000/pago-exitoso'
-    PAYPAL_CANCEL_URL = 'http://localhost:3000/pago-cancelado'
+    FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
+    PAYPAL_RETURN_URL = f"{FRONTEND_URL}/pago-exitoso"
+    PAYPAL_CANCEL_URL = f"{FRONTEND_URL}/pago-cancelado"
