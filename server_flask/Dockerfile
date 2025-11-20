@@ -8,15 +8,15 @@ RUN apt-get update && apt-get install -y \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
-# Establecer directorio de trabajo EN server_flask directamente
-WORKDIR /app/server_flask
+# Establecer directorio de trabajo
+WORKDIR /app
 
-# Copiar requirements e instalar dependencias de Python
-COPY requirements.txt .
+# Copiar requirements desde server_flask
+COPY server_flask/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar todo el código al directorio padre
-COPY . /app
+# Copiar TODO el contenido de server_flask a /app
+COPY server_flask/ .
 
 # Crear directorios necesarios
 RUN mkdir -p uploads/cvs uploads/fotos
@@ -24,5 +24,5 @@ RUN mkdir -p uploads/cvs uploads/fotos
 # Exponer puerto
 EXPOSE 8080
 
-# IMPORTANTE: Usar puerto 8080 directamente (sin variables)
+# Comando para ejecutar la aplicación
 CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "--timeout", "120", "wsgi:app"]
