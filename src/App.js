@@ -1,12 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { InicioUsuario } from "./principal/inicio_usuario.jsx";
 import { InicioPro } from "./principal/inicio_pro.jsx";
-import {Inicio_Sesion} from "./login/inicio_sesion.jsx"
+import {InicioSesion} from "./login/inicio_sesion.jsx"
 import Inicio from "./inicio/inicio.jsx";
-import Header from "./inicio/header.jsx";
-
 import "./styles/index.css";
 
 
@@ -18,7 +14,7 @@ function App() {
        
         <Route path="/principal_usu" element={<InicioUsuario />} />
         <Route path="/principal_pro" element={<InicioPro />} />
-        <Route path="/inicio" element={<Inicio_Sesion />} />
+        <Route path="/inicio" element={<InicioSesion />} />
       </Routes>
     </BrowserRouter>
   );

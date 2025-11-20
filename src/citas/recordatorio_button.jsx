@@ -1,5 +1,4 @@
 import { FaClock } from "react-icons/fa";
-import API_URL from '../config/api';
 
 export function RecordatorioButton({ cita }) {
     const agregarAGoogleCalendar = async () => {

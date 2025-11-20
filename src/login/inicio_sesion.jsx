@@ -6,7 +6,7 @@ import { RegistroUsu } from "./registro_usu"
 import { RegistroPro } from "./registro_pro"
 import "./auth.css"
 
-export function Inicio_Sesion() {
+export function InicioSesion() {
   const [activeTab, setActiveTab] = useState("login")
   const [registerType, setRegisterType] = useState("cliente")
   const [mensaje, setMensaje] = useState("")

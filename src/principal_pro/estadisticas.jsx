@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ResumenCards } from '../panel/ResumenCards';
-import API_URL from '../config/api';
 import { GraficoEstados } from '../panel/GraficoEstados';
 import { GraficoMensual } from '../panel/GraficoMensual';
 import { TablaTopClientes } from '../panel/TablaTopClientes';

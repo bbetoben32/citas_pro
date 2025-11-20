@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "../styles/menu.css"
 
 export function Menu({ seccionActiva, cambiarSeccion }) {

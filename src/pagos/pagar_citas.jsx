@@ -4,7 +4,6 @@ import { FaPhone } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
-import API_URL from '../config/api';
 import PayPalButtonCita from "./PayPalButtonCita";
 
 function Citas() {

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import API_URL from '../config/api';
 import { ConfiguracionPerfil } from '../perfil/perfil.jsx';
 import "../styles/pagos.css";
 

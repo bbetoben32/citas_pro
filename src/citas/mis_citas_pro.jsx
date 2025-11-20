@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaPhone, FaCalendarAlt, FaBook, FaClock, FaUser } from "react-icons/fa";
 import { RecordatorioButton } from './recordatorio_button';
-import API_URL from '../config/api';
 
 export function Mi_Citas_pro() {
     const [citas, setCitas] = useState([]);

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import API_URL from '../config/api';
 import { ConfiguracionPerfilProfesional } from '../perfil/perfil_pro.jsx';
 import "../styles/pagos.css";
 import "../styles/perfil-foto.css";

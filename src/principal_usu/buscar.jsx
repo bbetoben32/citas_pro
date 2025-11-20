@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/buscar.css";
 import { InfoPro } from "../pro_clientes/info_pro.jsx";
-import API_URL from '../config/api';
 
 export function BuscarProfesional() {
   const [profesionales, setProfesionales] = useState([]);

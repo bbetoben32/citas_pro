@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { FaPhone, FaCalendarAlt, FaBook, FaCheckCircle, FaEnvelope, FaStickyNote, FaSave, FaEdit } from "react-icons/fa";
-import API_URL from '../config/api';
 import { SiCashapp } from "react-icons/si";
 
 export default function HistorialPro() {

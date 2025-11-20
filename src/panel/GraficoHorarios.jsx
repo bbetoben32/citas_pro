@@ -1,4 +1,3 @@
-import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Clock } from 'lucide-react';
 import '../styles/estadisticas.css';

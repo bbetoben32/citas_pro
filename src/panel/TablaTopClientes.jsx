@@ -1,4 +1,3 @@
-import React from 'react';
 import { Award, Mail } from 'lucide-react';
 import '../styles/estadisticas.css';
 

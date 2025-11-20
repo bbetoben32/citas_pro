@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API_URL from '../config/api';
 import { Menu } from "../principal_usu/menu.jsx";
 import { BuscarProfesional } from "../principal_usu/buscar.jsx";
 import { PagosPendientes } from "../principal_usu/pagos.jsx";

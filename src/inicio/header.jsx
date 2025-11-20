@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Inicio_Sesion } from '../login/inicio_sesion';
+import { InicioSesion } from '../login/inicio_sesion';
 import '../styles/header.css';
 
 const Header = () => {

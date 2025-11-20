@@ -1,5 +1,4 @@
 import { useState } from "react"
-import API_URL from '../config/api';
 import "./perfil"
 
 function PasswordToggle({ fieldId, onToggle, showPassword }) {

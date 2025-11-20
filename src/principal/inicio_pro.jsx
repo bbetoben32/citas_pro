@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import API_URL from '../config/api';
 import { useNavigate } from "react-router-dom";
 import { Menu } from "../principal_pro/menu_pro.jsx";
 import { Confirmar } from "../principal_pro/confirmar.jsx";

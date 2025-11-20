@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import API_URL from '../config/api';
 import '../styles/agendar.css';
 
 export function AgendarCita({ profesional, onClose, visible }) {

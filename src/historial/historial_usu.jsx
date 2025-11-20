@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import API_URL from '../config/api';
 import { FaPhone, FaCalendarAlt, FaBook, FaCheckCircle } from "react-icons/fa";
 
 export function Historial_usu() {

@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { PasswordToggle } from "./PasswordToggle"
 import "./auth.css"
-import API_URL from '../config/api';
 
 export function RegistroPro({ onRegistroExitoso }) {
   const [paso, setPaso] = useState(1)

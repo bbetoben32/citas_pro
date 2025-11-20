@@ -1,5 +1,4 @@
 "use client"
-import API_URL from '../config/api';
 import { useState } from "react"
 import { PasswordToggle } from "./PasswordToggle"
 import "./auth.css"

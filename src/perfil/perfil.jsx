@@ -1,5 +1,4 @@
 "use client"
-import API_URL from '../config/api';
 import { useState } from "react"
 import "./perfil.css"
 
