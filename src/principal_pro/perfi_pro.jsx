@@ -3,7 +3,7 @@ import { ConfiguracionPerfilProfesional } from '../perfil/perfil_pro.jsx';
 import "../styles/pagos.css";
 import "../styles/perfil-foto.css";
 
-export function Perfil_pro() {
+export function Perfilpro() {
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [fotoPerfil, setFotoPerfil] = useState(null);
   const [cargando, setCargando] = useState(true);

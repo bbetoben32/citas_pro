@@ -45,7 +45,6 @@ export function ConfiguracionPerfil() {
 
   // Solo para clientes
   const token = localStorage.getItem("token")
-  const userId = localStorage.getItem("clienteId")
 
   const handleCambiarPassword = async () => {
     setCargando(true)

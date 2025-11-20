@@ -1,7 +1,7 @@
 import HistorialPro  from '../historial/historial_pro';
 import "../styles/historial_pro.css";
 
-export function Historial_Pro() {
+export function HistorialPrro() {
   return (
     <section className="pagos-pendientes-container">
       <div className="encabezado-pagos">

@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu } from "../principal_pro/menu_pro.jsx";
 import { Confirmar } from "../principal_pro/confirmar.jsx";
-import { Citas_Pendientes } from "../principal_pro/citas_pro.jsx";
-import { Historial_Pro } from "../principal_pro/historial_p.jsx";
-import {Perfil_pro} from "../principal_pro/perfi_pro.jsx";
+import { CitasPendientes } from "../principal_pro/citas_pro.jsx";
+import { HistorialPrro } from "../principal_pro/historial_p.jsx";
+import {Perfilpro} from "../principal_pro/perfi_pro.jsx";
 import {Estadisticas} from "../principal_pro/estadisticas.jsx";
 
 
 export function InicioPro() {
     const navigate = useNavigate();
-    const [nombre, setNombre] = useState("");
+    //const [nombre, setNombre] = useState("");
     const [cargando, setCargando] = useState(true);
     const [seccionActiva, setSeccionActiva] = useState("confirmar");
 
@@ -61,11 +61,11 @@ export function InicioPro() {
             case "confirmar":
                 return <Confirmar />;
             case "citas":
-                return <Citas_Pendientes/>;
+                return <CitasPendientes/>;
             case "historial":
-                return <Historial_Pro/>;
+                return <HistorialPrro/>;
             case "perfil":
-                return <Perfil_pro/>;
+                return <Perfilpro/>;
             case "estadisticas":
                 return <Estadisticas/>;
             default:

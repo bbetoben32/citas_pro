@@ -1,6 +1,7 @@
 // src/components/PayPalButtonCita.jsx
 import { useEffect, useRef, useState } from "react";
 
+
 export default function PayPalButtonCita({ cita, onPagoExitoso }) {
   const btnRef = useRef(null);
   const [montando, setMontando] = useState(false);

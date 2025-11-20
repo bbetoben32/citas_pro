@@ -9,7 +9,7 @@ import {Perfil} from "../principal_usu/perfi.jsx";
 
 export function InicioUsuario() {
     const navigate = useNavigate();
-    const [nombre, setNombre] = useState("");
+    //const [nombre, setNombre] = useState("");
     const [cargando, setCargando] = useState(true);
     const [seccionActiva, setSeccionActiva] = useState("buscar");
 

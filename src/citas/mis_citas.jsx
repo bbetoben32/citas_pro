@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaPhone, FaCalendarAlt, FaBook, FaClock } from "react-icons/fa";
+import { FaPhone, FaCalendarAlt, FaBook } from "react-icons/fa";
 import { RecordatorioButton } from './recordatorio_button';
 
 export function Mi_Citas() {

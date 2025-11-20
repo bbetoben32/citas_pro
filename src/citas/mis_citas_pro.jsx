@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { FaPhone, FaCalendarAlt, FaBook, FaClock, FaUser } from "react-icons/fa";
+import { FaPhone, FaCalendarAlt, FaBook, FaUser } from "react-icons/fa";
 import { RecordatorioButton } from './recordatorio_button';
 
-export function Mi_Citas_pro() {
+export function MiCitaspro() {
     const [citas, setCitas] = useState([]);
     const [cargando, setCargando] = useState(true);
 

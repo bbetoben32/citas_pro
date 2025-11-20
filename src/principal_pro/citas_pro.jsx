@@ -1,7 +1,7 @@
-import {Mi_Citas_pro} from '../citas/mis_citas_pro';
+import {MiCitaspro} from '../citas/mis_citas_pro';
 import "../styles/pagos.css";
 
-export function Citas_Pendientes() {
+export function CitasPendientes() {
   return (
     <section className="pagos-pendientes-container">
       <div className="encabezado-pagos">
@@ -9,7 +9,7 @@ export function Citas_Pendientes() {
         <p className='subtitulo-seccion'>Establece un recordatorio de tus citas</p>
       </div>
 
-      <Mi_Citas_pro />
+      <MiCitaspro />
     </section>
   );
 }
