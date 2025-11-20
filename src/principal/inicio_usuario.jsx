@@ -23,7 +23,7 @@ export function InicioUsuario() {
             }
 
             try {
-                const response = await fetch('http://localhost:5000/clientes/perfil', {
+                const response = await fetch('`${API_URL}/clientes/perfil', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

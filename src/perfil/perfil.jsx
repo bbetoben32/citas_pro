@@ -56,7 +56,7 @@ export function ConfiguracionPerfil() {
       return
     }
 
-    const endpoint = "http://localhost:5000/clientes/cambiar-password/solicitar"
+    const endpoint = "`${API_URL}/clientes/cambiar-password/solicitar"
 
     try {
       const response = await fetch(endpoint, {
@@ -98,7 +98,7 @@ export function ConfiguracionPerfil() {
       return
     }
 
-    const endpoint = "http://localhost:5000/clientes/cambiar-password/verificar"
+    const endpoint = "`${API_URL}/clientes/cambiar-password/verificar"
 
     try {
       const response = await fetch(endpoint, {
@@ -142,7 +142,7 @@ export function ConfiguracionPerfil() {
     setCargando(true)
     setMensaje("")
 
-    const endpoint = "http://localhost:5000/clientes/cambiar-correo/solicitar"
+    const endpoint = "`${API_URL}/clientes/cambiar-correo/solicitar"
 
     try {
       const response = await fetch(endpoint, {
@@ -181,7 +181,7 @@ export function ConfiguracionPerfil() {
       return
     }
 
-    const endpoint = "http://localhost:5000/clientes/cambiar-correo/verificar"
+    const endpoint = "`${API_URL}/clientes/cambiar-correo/verificar"
 
     try {
       const response = await fetch(endpoint, {

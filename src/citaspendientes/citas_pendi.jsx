@@ -20,7 +20,7 @@ export function Citas_pendi() {
         const token = localStorage.getItem('token_pro');
         
         try {
-            const response = await fetch('http://localhost:5000/citas/profesional?estado=pendiente', {
+            const response = await fetch('`${API_URL}/citas/profesional?estado=pendiente', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -94,7 +94,7 @@ export function Citas_pendi() {
                     motivo_rechazo: datos.motivo || 'No especificado'
                 };
 
-            const response = await fetch(`http://localhost:5000/citas/${citaSeleccionada.id}/responder`, {
+            const response = await fetch(``${API_URL}/citas/${citaSeleccionada.id}/responder`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

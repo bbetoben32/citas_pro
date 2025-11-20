@@ -15,7 +15,7 @@ export function Mi_Citas() {
         setCargando(true);
         
         try {
-            let url = 'http://localhost:5000/citas/cliente?estado=pagada';
+            let url = '`${API_URL}/citas/cliente?estado=pagada';
             
             const response = await fetch(url, {
                 headers: {

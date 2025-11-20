@@ -42,7 +42,7 @@ function Citas() {
         const token = localStorage.getItem("token");
         try {
             const response = await fetch(
-                "http://localhost:5000/citas/cliente?estado=aceptada",
+                "`${API_URL}/citas/cliente?estado=aceptada",
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             if (!response.ok) {

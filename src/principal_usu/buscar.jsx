@@ -27,7 +27,7 @@ export function BuscarProfesional() {
 
   const obtenerProfesionales = async () => {
     try {
-      const response = await fetch('http://localhost:5000/profesionales/');
+      const response = await fetch('`${API_URL}/profesionales/');
       if (response.ok) {
         const datos = await response.json();
         setProfesionales(datos);
@@ -95,7 +95,7 @@ export function BuscarProfesional() {
     }
     
     // Si es una ruta local, construir la URL completa
-    return `http://localhost:5000${profesional.foto}`;
+    return ``${API_URL}${profesional.foto}`;
   };
 
   const verDetallesProfesional = (profesional) => {

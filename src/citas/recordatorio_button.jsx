@@ -42,7 +42,7 @@ export function RecordatorioButton({ cita }) {
         const token = localStorage.getItem('token');
         
         try {
-            const response = await fetch('http://localhost:5000/citas/recordatorio', {
+            const response = await fetch('`${API_URL}/citas/recordatorio', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

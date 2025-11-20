@@ -18,7 +18,7 @@ export default function HistorialPro() {
         setCargando(true);
         
         try {
-            const response = await fetch('http://localhost:5000/citas/profesional', {
+            const response = await fetch('`${API_URL}/citas/profesional', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -68,7 +68,7 @@ export default function HistorialPro() {
         const token = localStorage.getItem('token_pro');
 
         try {
-            const response = await fetch(`http://localhost:5000/citas/${citaId}/notas`, {
+            const response = await fetch(``${API_URL}/citas/${citaId}/notas`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

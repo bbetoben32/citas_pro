@@ -25,7 +25,7 @@ export function MiCitaspro() {
         
         try {
             // Cambio: endpoint para profesionales
-            let url = 'http://localhost:5000/citas/profesional?estado=pagada';
+            let url = '`${API_URL}/citas/profesional?estado=pagada';
             
             console.log('📡 Llamando a:', url);
             

@@ -16,7 +16,7 @@ export function InfoPro({ profesional, onClose, visible }) {
             if (profesional.cv.startsWith('http')) {
                 window.open(profesional.cv, '_blank');
             } else {
-                window.open(`http://localhost:5000${profesional.cv}`, '_blank');
+                window.open(``${API_URL}${profesional.cv}`, '_blank');
             }
         }
     };

@@ -15,7 +15,7 @@ export function Historial_usu() {
         
         try {
             // Obtener todas las citas del cliente (sin filtrar por estado)
-            let url = 'http://localhost:5000/citas/cliente';
+            let url = '`${API_URL}/citas/cliente';
             
             const response = await fetch(url, {
                 headers: {

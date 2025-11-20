@@ -28,8 +28,8 @@ export function InicionSesionUsuPro() {
 
     const endpoint =
       userType === "cliente" 
-        ? "http://localhost:5000/clientes/login" 
-        : "http://localhost:5000/profesionales/login"
+        ? "`${API_URL}/clientes/login" 
+        : "`${API_URL}/profesionales/login"
 
     try {
       const response = await fetch(endpoint, {
