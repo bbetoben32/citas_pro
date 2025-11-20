@@ -24,5 +24,5 @@ RUN mkdir -p uploads/cvs uploads/fotos
 # Exponer puerto
 EXPOSE 8080
 
-# IMPORTANTE: Usar shell form para que $PORT se expanda
-CMD gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 120 wsgi:app
+# IMPORTANTE: Usar /bin/bash para expansión de variables
+CMD ["/bin/bash", "-c", "gunicorn --bind 0.0.0.0:${PORT} --workers 2 --timeout 120 wsgi:app"]
