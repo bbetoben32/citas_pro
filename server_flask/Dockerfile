@@ -22,7 +22,7 @@ COPY . /app
 RUN mkdir -p uploads/cvs uploads/fotos
 
 # Exponer puerto
-EXPOSE $PORT
+EXPOSE 8080
 
-# Comando para ejecutar la aplicación
-CMD gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 2 --timeout 120 wsgi:app
+# IMPORTANTE: Usar shell form para que $PORT se expanda
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 120 wsgi:app
