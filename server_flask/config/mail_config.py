@@ -7,3 +7,7 @@ class MailConfig:
     MAIL_USERNAME = os.getenv('MAIL_USERNAME', 'apikey')
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD', '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')
     MAIL_DEFAULT_SENDER = os.getenv('MAIL_DEFAULT_SENDER', 'psicoplus25@gmail.com')
+
+
+    MAIL_DEBUG = os.getenv('MAIL_DEBUG', 'False').lower() == 'true'
+    MAIL_SUPPRESS_SEND = os.getenv('MAIL_SUPPRESS_SEND', 'False').lower() == 'true'
