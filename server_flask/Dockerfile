@@ -11,12 +11,18 @@ RUN apt-get update && apt-get install -y \
 # Establecer directorio de trabajo
 WORKDIR /app
 
-# Copiar requirements desde server_flask
-COPY server_flask/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copiar TODO el proyecto primero
+COPY . .
 
-# Copiar TODO el contenido de server_flask a /app
-COPY server_flask/ .
+# Si server_flask existe, mover su contenido a /app
+RUN if [ -d "server_flask" ]; then \
+        cp -r server_flask/* . && \
+        cp -r server_flask/.* . 2>/dev/null || true && \
+        rm -rf server_flask; \
+    fi
+
+# Instalar dependencias de Python
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Crear directorios necesarios
 RUN mkdir -p uploads/cvs uploads/fotos
