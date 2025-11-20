@@ -37,7 +37,7 @@ const Header = () => {
       {showLogin && (
         <div className="header-modal-overlay" onClick={handleCloseLogin}>
           <div className="header-modal-content" onClick={(e) => e.stopPropagation()}>
-            <Inicio_Sesion />
+            <InicioSesion />
           </div>
         </div>
       )}
