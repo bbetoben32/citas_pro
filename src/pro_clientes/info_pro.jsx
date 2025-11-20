@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AgendarCita } from './agendar';
 import '../styles/InfoPro.css';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function InfoPro({ profesional, onClose, visible }) {
     const [showAgendarCita, setShowAgendarCita] = useState(false);
@@ -16,7 +17,7 @@ export function InfoPro({ profesional, onClose, visible }) {
             if (profesional.cv.startsWith('http')) {
                 window.open(profesional.cv, '_blank');
             } else {
-                window.open(``${API_URL}${profesional.cv}`, '_blank');
+                window.open(`${API_URL}${profesional.cv}`, '_blank');
             }
         }
     };

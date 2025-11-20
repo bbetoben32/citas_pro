@@ -1,5 +1,6 @@
 // src/components/PayPalButtonCita.jsx
 import { useEffect, useRef, useState } from "react";
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 
 export default function PayPalButtonCita({ cita, onPagoExitoso }) {
@@ -55,7 +56,7 @@ export default function PayPalButtonCita({ cita, onPagoExitoso }) {
           });
 
           return fetch(
-            ``${API_URL}/citas/${cita.id}/pagar/confirmar`,
+            `${API_URL}/citas/${cita.id}/pagar/confirmar`,
             {
               method: "POST",
               headers: {

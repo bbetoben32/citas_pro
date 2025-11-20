@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaCheck, FaTimes, FaPhone, FaCalendarAlt, FaEnvelope, FaUser, FaInfoCircle } from "react-icons/fa";
 import { SiCashapp } from "react-icons/si";
 import { CitaModal } from './Cita_recha_ace';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import '../styles/citas_pen.css';
 
 export function Citas_pendi() {
@@ -94,7 +95,7 @@ export function Citas_pendi() {
                     motivo_rechazo: datos.motivo || 'No especificado'
                 };
 
-            const response = await fetch(``${API_URL}/citas/${citaSeleccionada.id}/responder`, {
+            const response = await fetch(`${API_URL}/citas/${citaSeleccionada.id}/responder`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

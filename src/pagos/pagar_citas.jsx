@@ -5,6 +5,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
 import PayPalButtonCita from "./PayPalButtonCita";
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 function Citas() {
     const [citas, setCitas] = useState([]);
@@ -42,7 +43,7 @@ function Citas() {
         const token = localStorage.getItem("token");
         try {
             const response = await fetch(
-                "`${API_URL}/citas/cliente?estado=aceptada",
+                `${API_URL}/citas/cliente?estado=aceptada`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             if (!response.ok) {

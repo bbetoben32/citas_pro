@@ -1,5 +1,5 @@
 "use client"
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import { useState } from "react"
 import { PasswordToggle } from "./PasswordToggle"
 import "./auth.css"
@@ -61,7 +61,7 @@ export function RegistroPro({ onRegistroExitoso }) {
     }
 
     try {
-      const response = await fetch("`${API_URL}/profesionales/registro", {
+      const response = await fetch(`${API_URL}/profesionales/registro`, {
         method: "POST",
         body: dataToSend,
       })
@@ -72,7 +72,7 @@ export function RegistroPro({ onRegistroExitoso }) {
         setTempId(resultado.temp_id)
         setCorreoRegistrado(resultado.correo)
         
-        const responseEnvio = await fetch("`${API_URL}/profesionales/enviar-codigo", {
+        const responseEnvio = await fetch(`${API_URL}/profesionales/enviar-codigo`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ temp_id: resultado.temp_id }),
@@ -109,7 +109,7 @@ export function RegistroPro({ onRegistroExitoso }) {
     }
 
     try {
-      const response = await fetch("`${API_URL}/profesionales/verificar-codigo", {
+      const response = await fetch(`${API_URL}/profesionales/verificar-codigo`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/buscar.css";
 import { InfoPro } from "../pro_clientes/info_pro.jsx";
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function BuscarProfesional() {
   const [profesionales, setProfesionales] = useState([]);
@@ -95,7 +96,7 @@ export function BuscarProfesional() {
     }
     
     // Si es una ruta local, construir la URL completa
-    return ``${API_URL}${profesional.foto}`;
+    return `${API_URL}${profesional.foto}`;
   };
 
   const verDetallesProfesional = (profesional) => {

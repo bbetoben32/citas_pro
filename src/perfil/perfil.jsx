@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import "./perfil.css"
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 function PasswordToggle({ fieldId, onToggle, showPassword }) {
   const handleClick = (e) => {
@@ -56,7 +57,7 @@ export function ConfiguracionPerfil() {
       return
     }
 
-    const endpoint = "`${API_URL}/clientes/cambiar-password/solicitar"
+    const endpoint = `${API_URL}/clientes/cambiar-password/solicitar`
 
     try {
       const response = await fetch(endpoint, {
@@ -98,7 +99,7 @@ export function ConfiguracionPerfil() {
       return
     }
 
-    const endpoint = "`${API_URL}/clientes/cambiar-password/verificar"
+    const endpoint = `${API_URL}/clientes/cambiar-password/verificar`
 
     try {
       const response = await fetch(endpoint, {
@@ -142,7 +143,7 @@ export function ConfiguracionPerfil() {
     setCargando(true)
     setMensaje("")
 
-    const endpoint = "`${API_URL}/clientes/cambiar-correo/solicitar"
+    const endpoint = `${API_URL}/clientes/cambiar-correo/solicitar`
 
     try {
       const response = await fetch(endpoint, {
@@ -181,7 +182,7 @@ export function ConfiguracionPerfil() {
       return
     }
 
-    const endpoint = "`${API_URL}/clientes/cambiar-correo/verificar"
+    const endpoint = `${API_URL}/clientes/cambiar-correo/verificar`
 
     try {
       const response = await fetch(endpoint, {

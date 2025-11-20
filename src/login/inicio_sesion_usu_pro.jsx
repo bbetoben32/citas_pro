@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { PasswordToggle } from "./PasswordToggle.jsx"
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import "./auth.css"
 
 export function InicionSesionUsuPro() {
@@ -28,8 +29,8 @@ export function InicionSesionUsuPro() {
 
     const endpoint =
       userType === "cliente" 
-        ? "`${API_URL}/clientes/login" 
-        : "`${API_URL}/profesionales/login"
+        ? `${API_URL}/clientes/login` 
+        : `${API_URL}/profesionales/login`
 
     try {
       const response = await fetch(endpoint, {

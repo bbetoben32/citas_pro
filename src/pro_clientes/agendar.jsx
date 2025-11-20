@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/agendar.css';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function AgendarCita({ profesional, onClose, visible }) {
     const [formData, setFormData] = useState({
@@ -128,7 +129,7 @@ export function AgendarCita({ profesional, onClose, visible }) {
         console.log('📤 Enviando cita:', citaData);
 
         try {
-            const response = await fetch('`${API_URL}/citas', {
+            const response = await fetch(`${API_URL}/citas`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FaPhone, FaCalendarAlt, FaBook, FaCheckCircle, FaEnvelope, FaStickyNote, FaSave, FaEdit } from "react-icons/fa";
 import { SiCashapp } from "react-icons/si";
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export default function HistorialPro() {
     const [citas, setCitas] = useState([]);
@@ -68,7 +69,7 @@ export default function HistorialPro() {
         const token = localStorage.getItem('token_pro');
 
         try {
-            const response = await fetch(``${API_URL}/citas/${citaId}/notas`, {
+            const response = await fetch(`${API_URL}/citas/${citaId}/notas`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

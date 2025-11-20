@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "./perfil.css"
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 export function PasswordToggle({ fieldId, onToggle, showPassword }) {
   const handleClick = (e) => {
     e.preventDefault()
@@ -101,7 +101,7 @@ export function ConfiguracionPerfilProfesional() {
       return
     }
 
-    const endpoint = "`${API_URL}/profesionales/cambiar-password/verificar"
+    const endpoint = `${API_URL}/profesionales/cambiar-password/verificar`
 
     try {
       const response = await fetch(endpoint, {
@@ -145,7 +145,7 @@ export function ConfiguracionPerfilProfesional() {
     setCargando(true)
     setMensaje("")
 
-    const endpoint = "`${API_URL}/profesionales/cambiar-correo/solicitar"
+    const endpoint = `${API_URL}/profesionales/cambiar-correo/solicitar`
 
     try {
       const response = await fetch(endpoint, {
@@ -184,7 +184,7 @@ export function ConfiguracionPerfilProfesional() {
       return
     }
 
-    const endpoint = "`${API_URL}/profesionales/cambiar-correo/verificar"
+    const endpoint = `${API_URL}/profesionales/cambiar-correo/verificar`
 
     try {
       const response = await fetch(endpoint, {
@@ -252,7 +252,7 @@ export function ConfiguracionPerfilProfesional() {
     const formData = new FormData()
     formData.append('cv', cvFile)
 
-    const endpoint = ``${API_URL}/profesionales/${userId}`
+    const endpoint = `${API_URL}/profesionales/${userId}`
 
     try {
       const response = await fetch(endpoint, {

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ConfiguracionPerfilProfesional } from '../perfil/perfil_pro.jsx';
 import "../styles/pagos.css";
 import "../styles/perfil-foto.css";
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function Perfilpro() {
   const [nombreUsuario, setNombreUsuario] = useState("");
@@ -71,7 +72,7 @@ export function Perfilpro() {
 
     try {
       const token = localStorage.getItem("token_pro");
-      const response = await fetch(``${API_URL}/profesionales/${userId}`, {
+      const response = await fetch(`${API_URL}/profesionales/${userId}`, {
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -102,7 +103,7 @@ export function Perfilpro() {
       return fotoPerfil;
     }
     
-    return ``${API_URL}${fotoPerfil}`;
+    return `${API_URL}${fotoPerfil}`;
   };
 
   return (

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import { FaPhone, FaCalendarAlt, FaBook, FaCheckCircle } from "react-icons/fa";
 
 export function Historial_usu() {
@@ -15,7 +16,7 @@ export function Historial_usu() {
         
         try {
             // Obtener todas las citas del cliente (sin filtrar por estado)
-            let url = '`${API_URL}/citas/cliente';
+            let url = `${API_URL}/citas/cliente`;
             
             const response = await fetch(url, {
                 headers: {
