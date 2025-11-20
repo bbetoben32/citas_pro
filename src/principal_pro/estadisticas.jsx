@@ -6,6 +6,7 @@ import { TablaTopClientes } from '../panel/TablaTopClientes';
 import { GraficoHorarios } from '../panel/GraficoHorarios';
 import "../styles/estadisticas.css";
 import "../styles/buscar.css";
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function Estadisticas() {

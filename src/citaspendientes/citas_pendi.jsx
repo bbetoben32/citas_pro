@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { FaCheck, FaTimes, FaPhone, FaCalendarAlt, FaEnvelope, FaUser, FaInfoCircle } from "react-icons/fa";
 import { SiCashapp } from "react-icons/si";
 import { CitaModal } from './Cita_recha_ace';
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import '../styles/citas_pen.css';
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 export function Citas_pendi() {
     const [citas, setCitas] = useState([]);

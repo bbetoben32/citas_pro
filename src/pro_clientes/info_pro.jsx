@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AgendarCita } from './agendar';
 import '../styles/InfoPro.css';
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function InfoPro({ profesional, onClose, visible }) {

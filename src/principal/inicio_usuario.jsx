@@ -6,6 +6,7 @@ import { PagosPendientes } from "../principal_usu/pagos.jsx";
 import { CitasPendientes } from "../principal_usu/citas.jsx";
 import { Historial_u } from "../principal_usu/historial.jsx";
 import {Perfil} from "../principal_usu/perfi.jsx";
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function InicioUsuario() {

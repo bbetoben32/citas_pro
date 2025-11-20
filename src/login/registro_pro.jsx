@@ -1,8 +1,10 @@
 "use client"
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import { useState } from "react"
 import { PasswordToggle } from "./PasswordToggle"
 import "./auth.css"
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 export function RegistroPro({ onRegistroExitoso }) {
   const [paso, setPaso] = useState(1)

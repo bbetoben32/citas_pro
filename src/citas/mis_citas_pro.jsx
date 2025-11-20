@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import { FaPhone, FaCalendarAlt, FaBook, FaUser } from "react-icons/fa";
 import { RecordatorioButton } from './recordatorio_button';
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 export function MiCitaspro() {
     const [citas, setCitas] = useState([]);

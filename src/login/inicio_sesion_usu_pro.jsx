@@ -2,8 +2,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { PasswordToggle } from "./PasswordToggle.jsx"
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import "./auth.css"
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 export function InicionSesionUsuPro() {
   const navigate = useNavigate()

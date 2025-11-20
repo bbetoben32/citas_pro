@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ConfiguracionPerfil } from '../perfil/perfil.jsx';
 import "../styles/pagos.css";
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function Perfil() {

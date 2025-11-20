@@ -5,6 +5,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
 import PayPalButtonCita from "./PayPalButtonCita";
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 function Citas() {

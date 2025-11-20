@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FaPhone, FaCalendarAlt, FaBook, FaCheckCircle, FaEnvelope, FaStickyNote, FaSave, FaEdit } from "react-icons/fa";
 import { SiCashapp } from "react-icons/si";
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export default function HistorialPro() {

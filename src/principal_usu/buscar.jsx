@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/buscar.css";
 import { InfoPro } from "../pro_clientes/info_pro.jsx";
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function BuscarProfesional() {

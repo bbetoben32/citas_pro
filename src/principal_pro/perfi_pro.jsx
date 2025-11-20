@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ConfiguracionPerfilProfesional } from '../perfil/perfil_pro.jsx';
 import "../styles/pagos.css";
 import "../styles/perfil-foto.css";
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function Perfilpro() {

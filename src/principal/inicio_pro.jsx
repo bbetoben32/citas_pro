@@ -6,6 +6,7 @@ import { CitasPendientes } from "../principal_pro/citas_pro.jsx";
 import { HistorialPrro } from "../principal_pro/historial_p.jsx";
 import {Perfilpro} from "../principal_pro/perfi_pro.jsx";
 import {Estadisticas} from "../principal_pro/estadisticas.jsx";
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function InicioPro() {

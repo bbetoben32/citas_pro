@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import { FaPhone, FaCalendarAlt, FaBook, FaCheckCircle } from "react-icons/fa";
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 export function Historial_usu() {
     const [citas, setCitas] = useState([]);
