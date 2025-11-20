@@ -3,99 +3,170 @@ import { useEffect, useRef, useState } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
+// Tu Client ID de PayPal Sandbox
+const PAYPAL_CLIENT_ID = "TU_CLIENT_ID_DE_PAYPAL_SANDBOX";
 
 export default function PayPalButtonCita({ cita, onPagoExitoso }) {
   const btnRef = useRef(null);
-  const [montando, setMontando] = useState(false);
+  const [sdkReady, setSdkReady] = useState(false);
+  const [error, setError] = useState(null);
+  const renderedRef = useRef(false);
 
+  // Cargar el SDK de PayPal dinámicamente
   useEffect(() => {
-    if (!window.paypal || montando) return;
-    setMontando(true);
+    const scriptId = "paypal-sdk";
+    
+    // Si ya existe el script, marcar como listo
+    if (document.getElementById(scriptId)) {
+      if (window.paypal) {
+        setSdkReady(true);
+      }
+      return;
+    }
 
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=USD`;
+    script.async = true;
+    
+    script.onload = () => {
+      console.log("✅ PayPal SDK cargado");
+      setSdkReady(true);
+    };
+    
+    script.onerror = () => {
+      console.error("❌ Error cargando PayPal SDK");
+      setError("No se pudo cargar PayPal");
+    };
+
+    document.body.appendChild(script);
+
+    return () => {
+      // No removemos el script para evitar recargas
+    };
+  }, []);
+
+  // Renderizar botón cuando el SDK esté listo
+  useEffect(() => {
+    if (!sdkReady || !window.paypal || !btnRef.current || renderedRef.current) {
+      return;
+    }
+
+    renderedRef.current = true;
     const token = localStorage.getItem("token");
 
-    window.paypal.Button.render(
-      {
-        env: "sandbox", // o 'production' cuando cambies
-        style: {
-          size: "medium", // small | medium | large | responsive
-          color: "gold",      // gold | blue | silver | black
-          shape: "rect",      // pill | rect
-          label: "paypal",
-          tagline: false     // checkout | pay | buynow | paypal | installment
-        },
+    window.paypal.Buttons({
+      style: {
+        layout: 'vertical',
+        color: 'gold',
+        shape: 'rect',
+        label: 'paypal',
+        height: 45
+      },
 
-        // 1) Crear el pago en TU backend (retorna payment_id)
-        payment: function () {
-          return fetch(`${API_URL}/citas/${cita.id}/pagar/iniciar`, {
+      // Crear orden en tu backend
+      createOrder: async () => {
+        try {
+          const response = await fetch(`${API_URL}/citas/${cita.id}/pagar/iniciar`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
-          })
-            .then((res) => {
-              if (!res.ok) throw new Error("Error creando el pago");
-              return res.json();
-            })
-            .then((data) => {
-              if (!data.success || !data.payment_id) {
-                const mensaje = data.error || data.details || "No se obtuvo payment_id";
-                throw new Error(mensaje);
-              }
-              // IMPORTANTE: retornar el payment_id a PayPal
-              return data.payment_id;
-            });
-        },
-
-        // 2) El usuario autoriza en el pop-up de PayPal
-        onAuthorize: function (data, actions) {
-          // data.paymentID y data.payerID vienen de PayPal (v1)
-          const body = JSON.stringify({
-            paymentId: data.paymentID,
-            payerId: data.payerID,
           });
 
-          return fetch(
-            `${API_URL}/citas/${cita.id}/pagar/confirmar`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-              body,
-            }
-          )
-            .then((res) => res.json().then((j) => ({ ok: res.ok, j })))
-            .then(({ ok, j }) => {
-              if (!ok || !j.success) {
-                const msg = j.error || j.details || "Error al confirmar el pago";
-                throw new Error(msg);
-              }
-              // Avisar al padre para que saque la tarjeta de la lista
-              onPagoExitoso?.(cita.id);
-              alert("✅ Pago confirmado. ¡Tu cita ha quedado pagada!");
-            })
-            .catch((err) => {
-              console.error(err);
-              alert("❌ No se pudo confirmar el pago: " + err.message);
-            });
-        },
+          const data = await response.json();
 
-        onCancel: function () {
-          // El usuario cerró el pop-up o canceló
-          console.log("Pago cancelado por el usuario");
-        },
+          if (!response.ok || !data.success) {
+            throw new Error(data.error || "Error creando el pago");
+          }
 
-        onError: function (err) {
-          console.error("Error en PayPal:", err);
-          alert("❌ Ocurrió un error con PayPal. Reintenta.");
-        },
+          console.log("✅ Orden creada:", data.payment_id);
+          return data.payment_id;
+        } catch (err) {
+          console.error("❌ Error en createOrder:", err);
+          setError(err.message);
+          throw err;
+        }
       },
-      btnRef.current
-    );
-  }, [cita, montando]);
 
-  return <div ref={btnRef} />;
+      // Capturar el pago después de aprobar
+      onApprove: async (data) => {
+        try {
+          console.log("📝 Pago aprobado, confirmando...", data);
+
+          const response = await fetch(`${API_URL}/citas/${cita.id}/pagar/confirmar`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              paymentId: data.orderID,
+              payerId: data.payerID,
+            }),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            throw new Error(result.error || "Error confirmando el pago");
+          }
+
+          console.log("✅ Pago confirmado");
+          alert("✅ ¡Pago exitoso! Tu cita ha sido confirmada.");
+          onPagoExitoso?.(cita.id);
+        } catch (err) {
+          console.error("❌ Error en onApprove:", err);
+          alert("❌ Error al confirmar el pago: " + err.message);
+        }
+      },
+
+      onCancel: () => {
+        console.log("⚠️ Pago cancelado por el usuario");
+      },
+
+      onError: (err) => {
+        console.error("❌ Error PayPal:", err);
+        setError("Error con PayPal. Intenta de nuevo.");
+      },
+    }).render(btnRef.current);
+
+  }, [sdkReady, cita, onPagoExitoso]);
+
+  if (error) {
+    return (
+      <div style={{ 
+        padding: '15px', 
+        background: '#fee', 
+        borderRadius: '8px',
+        color: '#c00',
+        textAlign: 'center'
+      }}>
+        ⚠️ {error}
+        <br />
+        <button 
+          onClick={() => window.location.reload()}
+          style={{ marginTop: '10px', padding: '8px 16px', cursor: 'pointer' }}
+        >
+          Recargar página
+        </button>
+      </div>
+    );
+  }
+
+  if (!sdkReady) {
+    return (
+      <div style={{ 
+        padding: '15px', 
+        background: '#f5f5f5', 
+        borderRadius: '8px',
+        textAlign: 'center'
+      }}>
+        Cargando PayPal...
+      </div>
+    );
+  }
+
+  return <div ref={btnRef} style={{ minHeight: '50px' }} />;
 }
