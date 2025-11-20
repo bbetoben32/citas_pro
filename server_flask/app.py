@@ -34,7 +34,7 @@ def create_app(config_name='development'):
     # ✅ CONFIGURACIÓN CORS
     CORS(app, 
          resources={r"/*": {
-             "origins": ["http://localhost:3000",os.getenv("FRONTEND_URL", "*")],
+             "origins": ["http://localhost:3000","https://noble-light-production.up.railway.app",os.getenv("FRONTEND_URL", "*")],
              "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
              "allow_headers": ["Content-Type", "Authorization"],
              "supports_credentials": True,
