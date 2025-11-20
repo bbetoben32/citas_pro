@@ -8,21 +8,21 @@ RUN apt-get update && apt-get install -y \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
-# Establecer directorio de trabajo
-WORKDIR /app
+# Establecer directorio de trabajo EN server_flask directamente
+WORKDIR /app/server_flask
 
 # Copiar requirements e instalar dependencias de Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar todo el código
-COPY . .
+# Copiar todo el código al directorio padre
+COPY . /app
 
-# Crear directorios necesarios dentro de server_flask
-RUN mkdir -p server_flask/uploads/cvs server_flask/uploads/fotos
+# Crear directorios necesarios
+RUN mkdir -p uploads/cvs uploads/fotos
 
-# Exponer puerto (Railway usa variable $PORT)
+# Exponer puerto
 EXPOSE $PORT
 
-# CRÍTICO: Cambiar al directorio server_flask y ejecutar gunicorn
-CMD ["sh", "-c", "cd server_flask && gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 2 --timeout 120 wsgi:app"]
+# Comando para ejecutar la aplicación
+CMD gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 2 --timeout 120 wsgi:app
