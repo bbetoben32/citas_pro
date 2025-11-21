@@ -15,3 +15,10 @@ class PayPalConfig:
     FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
     PAYPAL_RETURN_URL = f"{FRONTEND_URL}/pago-exitoso"
     PAYPAL_CANCEL_URL = f"{FRONTEND_URL}/pago-cancelado"
+
+    @staticmethod
+    def get_api_base_url():
+        """Retorna la URL base de la API de PayPal según el modo"""
+        if PayPalConfig.PAYPAL_MODE == 'production':
+            return 'https://api-m.paypal.com'
+        return 'https://api-m.sandbox.paypal.com'
