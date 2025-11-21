@@ -18,7 +18,7 @@ export function Mi_Citas() {
         setCargando(true);
         
         try {
-            let url = '`${API_URL}/citas/cliente?estado=pagada';
+            let url = `${API_URL}/citas/cliente?estado=pagada`;
             
             const response = await fetch(url, {
                 headers: {
