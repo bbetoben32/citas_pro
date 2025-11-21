@@ -21,7 +21,7 @@ const Header = () => {
           <div className="header-contenido">
             <div className="logo">
               <div className="logo-link">
-                <img src="./img/logo.png" alt="logo-img" className="logo-img" />
+                <img src="./img/logo.webp" alt="logo-img" className="logo-img" />
               </div>
             </div>
             <div className="acciones_usuario">
