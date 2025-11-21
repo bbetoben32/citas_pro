@@ -1,4 +1,4 @@
-// src/pagos/PayPalButtonCita.jsx
+// src/components/PayPalButtonCita.jsx (o donde esté tu archivo)
 import { useEffect, useRef } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -34,6 +34,9 @@ export default function PayPalButtonCita({ cita, onPagoExitoso }) {
           label: 'paypal',
           height: 45
         },
+
+        // ✅ ESTO OCULTA EL BOTÓN DE TARJETA
+        fundingSource: window.paypal.FUNDING.PAYPAL,
 
         createOrder: async () => {
           const response = await fetch(`${API_URL}/citas/${cita.id}/pagar/iniciar`, {
