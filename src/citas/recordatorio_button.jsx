@@ -1,10 +1,10 @@
 import { FaClock } from "react-icons/fa";
-
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export function RecordatorioButton({ cita }) {
     const agregarAGoogleCalendar = async () => {
         try {
+            // ✅ Corregido: agregar paréntesis antes del template literal
             const startDate = new Date(`${cita.fecha}T${cita.hora_inicio}`);
             const endDate = new Date(`${cita.fecha}T${cita.hora_fin}`);
             
@@ -12,6 +12,7 @@ export function RecordatorioButton({ cita }) {
                 return fecha.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
             };
 
+            // ✅ Corregido
             const titulo = encodeURIComponent(`Cita con ${cita.profesional_nombre}`);
             const descripcion = encodeURIComponent(
                 `Consulta: ${cita.motivo}\n` +
@@ -30,13 +31,10 @@ export function RecordatorioButton({ cita }) {
                 `&ctz=America/Bogota`;
 
             window.open(googleCalendarUrl, '_blank');
-
             await enviarRecordatorioPorCorreo();
             
-            
-            
         } catch (error) {
-            
+            console.error('Error al agregar a calendario:', error);
         }
     };
 
@@ -44,6 +42,7 @@ export function RecordatorioButton({ cita }) {
         const token = localStorage.getItem('token');
         
         try {
+            // ✅ Corregido
             const response = await fetch(`${API_URL}/citas/recordatorio`, {
                 method: 'POST',
                 headers: {
@@ -62,8 +61,6 @@ export function RecordatorioButton({ cita }) {
             console.error('Error al enviar recordatorio:', error);
         }
     };
-
-    ;
 
     return (
         <button
