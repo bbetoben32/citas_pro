@@ -1,10 +1,7 @@
 # services/paypal_service.py
-"""
-Servicio para manejar pagos con PayPal (Payments v1 con paypalrestsdk)
-"""
+
 import os
-import math
-import paypalrestsdk
+import requests
 from decimal import Decimal, ROUND_HALF_UP
 from config.paypal_config import PayPalConfig
 
@@ -22,35 +19,53 @@ def _cop_a_usd(monto_cop, tasa=None):
     - Aplica redondeo a 2 decimales.
     - Fuerza mínimo de 1.00 USD (PayPal no acepta 0.00).
     """
-    # Permite sobreescribir la tasa por env var, ej. PAYPAL_COP_USD_RATE=4200
     tasa_env = os.getenv("PAYPAL_COP_USD_RATE")
     if tasa is not None:
         tasa_cop_usd = float(tasa)
     elif tasa_env:
         tasa_cop_usd = float(tasa_env)
     else:
-        # Fallback: 1 USD ≈ 4000 COP (ajústalo según tu necesidad real)
         tasa_cop_usd = 4000.0
 
     usd = float(monto_cop) / tasa_cop_usd
-    usd = max(usd, 1.0)  # mínimo 1.00 USD para evitar rechazos por 0.00
+    usd = max(usd, 1.0)  # mínimo 1.00 USD
     return _round_usd(usd), tasa_cop_usd
 
 
 class PayPalService:
     def __init__(self):
         """
-        Inicializa la configuración de PayPal.
+        Inicializa la configuración de PayPal Orders API v2
         """
-        paypalrestsdk.configure({
-            "mode": PayPalConfig.PAYPAL_MODE,  # 'sandbox' o 'live'
-            "client_id": PayPalConfig.PAYPAL_CLIENT_ID,
-            "client_secret": PayPalConfig.PAYPAL_CLIENT_SECRET,
-        })
+        self.client_id = PayPalConfig.PAYPAL_CLIENT_ID
+        self.client_secret = PayPalConfig.PAYPAL_CLIENT_SECRET
+        self.mode = PayPalConfig.PAYPAL_MODE
+        self.base_url = PayPalConfig.get_api_base_url()
+
+    def _obtener_token(self):
+        """
+        Obtiene el token de acceso de PayPal
+        """
+        url = f"{self.base_url}/v1/oauth2/token"
+        
+        response = requests.post(
+            url,
+            headers={
+                "Accept": "application/json",
+                "Accept-Language": "en_US",
+            },
+            data={"grant_type": "client_credentials"},
+            auth=(self.client_id, self.client_secret)
+        )
+        
+        if response.status_code == 200:
+            return response.json()["access_token"]
+        else:
+            raise Exception(f"Error obteniendo token: {response.text}")
 
     def crear_pago(self, monto, descripcion, cita_id):
         """
-        Crea un pago en PayPal.
+        Crea una orden de pago en PayPal usando Orders API v2
 
         Args:
             monto (float|str|Decimal): Monto en COP
@@ -58,63 +73,92 @@ class PayPalService:
             cita_id (int): ID de la cita
 
         Returns:
-            dict: { success, payment_id, approval_url, monto_original, monto_usd, tasa_cop_usd } o { success: False, error }
+            dict: { success, payment_id, approval_url, monto_original, monto_usd, tasa_cop_usd } 
+                  o { success: False, error }
         """
         try:
+            # Convertir COP a USD
             monto_usd, tasa = _cop_a_usd(monto)
 
-            payment = paypalrestsdk.Payment({
-                "intent": "sale",
-                "payer": {"payment_method": "paypal"},
-                "redirect_urls": {
-                    "return_url": f"{PayPalConfig.PAYPAL_RETURN_URL}?cita_id={cita_id}",
-                    "cancel_url": f"{PayPalConfig.PAYPAL_CANCEL_URL}?cita_id={cita_id}",
-                },
-                "transactions": [{
-                    "item_list": {
-                        "items": [{
-                            "name": descripcion[:127] if descripcion else f"Cita #{cita_id}",
-                            "sku": f"cita-{cita_id}",
-                            "price": monto_usd,    # string con 2 decimales
-                            "currency": "USD",
-                            "quantity": 1
-                        }]
-                    },
+            # Obtener token de acceso
+            access_token = self._obtener_token()
+
+            # Crear orden
+            url = f"{self.base_url}/v2/checkout/orders"
+            
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {access_token}"
+            }
+            
+            # Truncar descripción si es muy larga
+            desc_corta = descripcion[:127] if descripcion else f"Cita #{cita_id}"
+            
+            order_data = {
+                "intent": "CAPTURE",
+                "purchase_units": [{
+                    "reference_id": f"CITA_{cita_id}",
+                    "description": f"Pago de cita #{cita_id}",
+                    "custom_id": str(cita_id),
+                    "items": [{
+                        "name": desc_corta,
+                        "description": f"Pago de cita #{cita_id}",
+                        "sku": f"cita-{cita_id}",
+                        "unit_amount": {
+                            "currency_code": "USD",
+                            "value": monto_usd
+                        },
+                        "quantity": "1",
+                        "category": "DIGITAL_GOODS"
+                    }],
                     "amount": {
-                        "total": monto_usd,
-                        "currency": "USD"
-                    },
-                    "description": f"Pago de cita #{cita_id}"
-                }]
-            })
-
-            if payment.create():
-                # Buscar approval_url para el flujo de redirección si lo usas (aunque con pop-up no es obligatorio)
+                        "currency_code": "USD",
+                        "value": monto_usd,
+                        "breakdown": {
+                            "item_total": {
+                                "currency_code": "USD",
+                                "value": monto_usd
+                            }
+                        }
+                    }
+                }],
+                "application_context": {
+                    "brand_name": "PsicoPlus",
+                    "landing_page": "NO_PREFERENCE",
+                    "user_action": "PAY_NOW",
+                    "return_url": f"{PayPalConfig.PAYPAL_RETURN_URL}?cita_id={cita_id}",
+                    "cancel_url": f"{PayPalConfig.PAYPAL_CANCEL_URL}?cita_id={cita_id}"
+                }
+            }
+            
+            response = requests.post(url, headers=headers, json=order_data)
+            
+            if response.status_code == 201:
+                order = response.json()
+                order_id = order["id"]
+                
+                # Buscar la URL de aprobación
                 approval_url = None
-                try:
-                    for link in payment.links:
-                        if link.rel == "approval_url":
-                            approval_url = link.href
-                            break
-                except Exception:
-                    # no es crítico si no hay links (checkout.js usa paymentId)
-                    approval_url = None
-
+                for link in order.get("links", []):
+                    if link.get("rel") == "approve":
+                        approval_url = link.get("href")
+                        break
+                
                 return {
                     "success": True,
-                    "payment_id": payment.id,
+                    "payment_id": order_id,  # Este es el Order ID v2 (NO PAY-XXX)
                     "approval_url": approval_url,
                     "monto_original": float(monto),
                     "monto_usd": float(monto_usd),
-                    "tasa_cop_usd": tasa,
+                    "tasa_cop_usd": tasa
                 }
             else:
-                # payment.error trae info detallada del fallo de PayPal
+                error_detail = response.json()
                 return {
                     "success": False,
-                    "error": payment.error
+                    "error": error_detail
                 }
-
+                
         except Exception as e:
             return {
                 "success": False,
@@ -123,73 +167,84 @@ class PayPalService:
 
     def ejecutar_pago(self, payment_id, payer_id):
         """
-        Ejecuta un pago ya aprobado por el usuario en el pop-up de PayPal.
+        Captura un pago ya aprobado por el usuario (Orders API v2)
 
         Args:
-            payment_id (str): ID del pago de PayPal
-            payer_id (str): ID del pagador (payerID)
+            payment_id (str): Order ID de PayPal (NO es PAY-XXX, es el ID de v2)
+            payer_id (str): ID del pagador (no se usa en v2 pero lo mantenemos por compatibilidad)
 
         Returns:
-            dict: { success, payment_id, state, payer_email, transaction_id, amount, currency } o { success: False, error }
+            dict: { success, payment_id, state, payer_email, transaction_id, amount, currency } 
+                  o { success: False, error }
         """
         try:
-            payment = paypalrestsdk.Payment.find(payment_id)
-
-            # Ejecutar
-            executed = payment.execute({"payer_id": payer_id})
-            if not executed:
-                # Error en la ejecución
-                return {
-                    "success": False,
-                    "error": payment.error
-                }
-
-            # PayPal Payments v1 devuelve 'approved' cuando todo OK
-            state = getattr(payment, "state", None)
-            if state != "approved":
-                # No marcar como pagada si no approved
-                return {
-                    "success": False,
-                    "error": f"Estado no aprobado: {state or 'desconocido'}"
-                }
-
-            # Extraer algunos datos útiles (opcional, para guardar o auditar)
-            payer_email = None
-            try:
-                payer_info = payment.payer.payer_info
-                payer_email = getattr(payer_info, "email", None)
-            except Exception:
-                pass
-
-            transaction_id = None
-            amount = None
-            currency = None
-            try:
-                # Normalmente viene en payment.transactions[0].related_resources[0].sale
-                txs = payment.transactions or []
-                if txs and "related_resources" in txs[0] and txs[0]["related_resources"]:
-                    sale = txs[0]["related_resources"][0].get("sale")
-                    if sale:
-                        transaction_id = sale.get("id")
-                        amount = sale.get("amount", {}).get("total")
-                        currency = sale.get("amount", {}).get("currency")
-                # fallback al amount declarado si no encontramos sale
-                if amount is None and txs:
-                    amount = txs[0].get("amount", {}).get("total")
-                    currency = txs[0].get("amount", {}).get("currency")
-            except Exception:
-                pass
-
-            return {
-                "success": True,
-                "payment_id": payment_id,
-                "state": state,  # 'approved'
-                "payer_email": payer_email,
-                "transaction_id": transaction_id,
-                "amount": amount,
-                "currency": currency
+            # Obtener token de acceso
+            access_token = self._obtener_token()
+            
+            # Capturar el pago
+            url = f"{self.base_url}/v2/checkout/orders/{payment_id}/capture"
+            
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {access_token}"
             }
-
+            
+            response = requests.post(url, headers=headers)
+            
+            if response.status_code == 201:
+                capture_data = response.json()
+                
+                # El estado debe ser "COMPLETED"
+                estado = capture_data.get("status")
+                
+                if estado == "COMPLETED":
+                    # Extraer información útil
+                    payer_email = None
+                    transaction_id = None
+                    amount = None
+                    currency = None
+                    
+                    try:
+                        # Obtener email del pagador
+                        payer = capture_data.get("payer", {})
+                        payer_email = payer.get("email_address")
+                        
+                        # Obtener info de la transacción
+                        purchase_units = capture_data.get("purchase_units", [])
+                        if purchase_units:
+                            payments = purchase_units[0].get("payments", {})
+                            captures = payments.get("captures", [])
+                            if captures:
+                                capture = captures[0]
+                                transaction_id = capture.get("id")
+                                amount_data = capture.get("amount", {})
+                                amount = amount_data.get("value")
+                                currency = amount_data.get("currency_code")
+                    except Exception:
+                        pass
+                    
+                    return {
+                        "success": True,
+                        "payment_id": payment_id,
+                        "state": "approved",  # Mantener "approved" para compatibilidad
+                        "status": estado,
+                        "payer_email": payer_email,
+                        "transaction_id": transaction_id,
+                        "amount": amount,
+                        "currency": currency
+                    }
+                else:
+                    return {
+                        "success": False,
+                        "error": f"Pago no completado. Estado: {estado}"
+                    }
+            else:
+                error_detail = response.json()
+                return {
+                    "success": False,
+                    "error": f"Error capturando pago: {error_detail}"
+                }
+                
         except Exception as e:
             return {
                 "success": False,
@@ -198,22 +253,42 @@ class PayPalService:
 
     def obtener_pago(self, payment_id):
         """
-        Obtiene información de un pago por ID.
+        Obtiene información de una orden por ID (Orders API v2)
 
         Returns:
-            dict: { success, payment: { id, state, create_time, update_time } } o { success: False, error }
+            dict: { success, payment: { id, state, create_time, update_time } } 
+                  o { success: False, error }
         """
         try:
-            payment = paypalrestsdk.Payment.find(payment_id)
-            return {
-                "success": True,
-                "payment": {
-                    "id": payment.id,
-                    "state": getattr(payment, "state", None),
-                    "create_time": getattr(payment, "create_time", None),
-                    "update_time": getattr(payment, "update_time", None),
-                }
+            access_token = self._obtener_token()
+            
+            url = f"{self.base_url}/v2/checkout/orders/{payment_id}"
+            
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {access_token}"
             }
+            
+            response = requests.get(url, headers=headers)
+            
+            if response.status_code == 200:
+                order = response.json()
+                return {
+                    "success": True,
+                    "payment": {
+                        "id": order.get("id"),
+                        "state": order.get("status"),
+                        "create_time": order.get("create_time"),
+                        "update_time": order.get("update_time"),
+                    }
+                }
+            else:
+                error_detail = response.json()
+                return {
+                    "success": False,
+                    "error": f"obtener_pago: {error_detail}"
+                }
+                
         except Exception as e:
             return {
                 "success": False,
