@@ -68,7 +68,7 @@ export function ConfiguracionPerfilProfesional() {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token_pro}`
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
           contrasena_actual: currentPassword,
@@ -110,7 +110,7 @@ export function ConfiguracionPerfilProfesional() {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token_pro}`
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
           codigo: codigoPasswordDigitado,
