@@ -1,10 +1,10 @@
 "use client"
 import { useState } from "react"
 import { PasswordToggle } from "./PasswordToggle"
+import { validarContrasena, IndicadorRequisitosContrasena } from "./passwordValidation"
 import "./auth.css"
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-
 
 export function RegistroPro({ onRegistroExitoso }) {
   const [paso, setPaso] = useState(1)
@@ -16,6 +16,8 @@ export function RegistroPro({ onRegistroExitoso }) {
   const [tempId, setTempId] = useState("")
   const [correoRegistrado, setCorreoRegistrado] = useState("")
   const [codigoDigitado, setCodigoDigitado] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
 
   const handleArchivoChange = (e) => {
     const archivo = e.target.files[0]
@@ -34,21 +36,27 @@ export function RegistroPro({ onRegistroExitoso }) {
     setCargando(true)
     setMensaje("")
 
-    const formData = new FormData(e.target)
-    const contrasena = formData.get("password")
-    const confirmarContrasena = formData.get("confirm_password")
+    // Validar contraseña
+    const { esValida } = validarContrasena(password)
+    if (!esValida) {
+      setMensaje("Error: La contraseña no cumple con los requisitos mínimos")
+      setCargando(false)
+      return
+    }
 
-    if (contrasena !== confirmarContrasena) {
+    if (password !== confirmPassword) {
       setMensaje("Error: Las contraseñas no coinciden")
       setCargando(false)
       return
     }
 
+    const formData = new FormData(e.target)
+
     const dataToSend = new FormData()
     dataToSend.append("nombre", formData.get("nombre_completo"))
     dataToSend.append("telefono", formData.get("telefono"))
     dataToSend.append("correo", formData.get("correo"))
-    dataToSend.append("contrasena", contrasena)
+    dataToSend.append("contrasena", password)
     dataToSend.append("ocupacion", formData.get("ocupacion"))
     dataToSend.append("exp", formData.get("experiencia"))
     dataToSend.append("tarifa", formData.get("tarifa"))
@@ -155,7 +163,6 @@ export function RegistroPro({ onRegistroExitoso }) {
             </div>
           )}
 
-          {/* Formulario Profesional */}
           <form id="form-profesional" className="auth-form active" onSubmit={handleRegistro} encType="multipart/form-data">
             <div className="auth-field-group">
               <label htmlFor="nombre_prof">
@@ -210,9 +217,12 @@ export function RegistroPro({ onRegistroExitoso }) {
                   name="password"
                   required
                   placeholder="Crear contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <PasswordToggle fieldId="password_prof" onToggle={() => setShowPassword(!showPassword)} showPassword={showPassword} />
               </div>
+              <IndicadorRequisitosContrasena contrasena={password} mostrar={password.length > 0} />
             </div>
 
             <div className="auth-field-group auth-password-field full-width">
@@ -226,6 +236,8 @@ export function RegistroPro({ onRegistroExitoso }) {
                   name="confirm_password"
                   required
                   placeholder="Confirmar contraseña"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <PasswordToggle
                   fieldId="confirm_password_prof"
@@ -233,6 +245,11 @@ export function RegistroPro({ onRegistroExitoso }) {
                   showPassword={showConfirmPassword}
                 />
               </div>
+              {confirmPassword && password !== confirmPassword && (
+                <div style={{ marginTop: "6px", fontSize: "12px", color: "#dc3545" }}>
+                  <i className="fas fa-exclamation-circle"></i> Las contraseñas no coinciden
+                </div>
+              )}
             </div>
 
             <div className="auth-field-group">
