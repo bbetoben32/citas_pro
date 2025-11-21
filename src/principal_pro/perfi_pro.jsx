@@ -25,10 +25,11 @@ export function Perfilpro() {
     }
 
     try {
-      const response = await fetch(`${API_URL}/profesionales/perfil`, {
+      const url = API_URL + '/profesionales/perfil';
+      const response = await fetch(url, {
         method: "GET",
         headers: { 
-          "Authorization": `Bearer ${token}`
+          "Authorization": "Bearer " + token
         }
       });
 
@@ -73,10 +74,11 @@ export function Perfilpro() {
 
     try {
       const token = localStorage.getItem("token_pro");
-      const response = await fetch(`${API_URL}/profesionales/${userId}`, {
+      const url = API_URL + '/profesionales/' + userId;
+      const response = await fetch(url, {
         method: "PUT",
         headers: {
-          "Authorization": `Bearer ${token}`
+          "Authorization": "Bearer " + token
         },
         body: formData
       });
@@ -104,7 +106,7 @@ export function Perfilpro() {
       return fotoPerfil;
     }
     
-    return `${API_URL}${fotoPerfil}`;
+    return API_URL + fotoPerfil;
   };
 
   return (
