@@ -70,6 +70,15 @@ export function Menu({ seccionActiva, cambiarSeccion }) {
             </span>
             <span className="texto-nav">Mi Perfil</span>
           </a>
+          <button 
+            className="item-navegacion btn-cerrar-sesion"
+            onClick={handleCerrarSesion}
+            >
+            <span className="icono-nav">
+              <i className="fa-solid fa-right-from-bracket"></i>
+            </span>
+            <span className="texto-nav">Cerrar Sesión</span>
+          </button>
         </nav>
       </aside>
     </div>
