@@ -48,7 +48,7 @@ export function ConfiguracionPerfilProfesional() {
   const [cvFile, setCvFile] = useState(null)
   const [cvFileName, setCvFileName] = useState("")
 
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token_pro")
   const userId = localStorage.getItem("profesionalId")
 
   const handleCambiarPassword = async () => {
